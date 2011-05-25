@@ -50,6 +50,10 @@ namespace TrainSimulator.Model
                         result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
                     }
                 }
+                else if (!direction && rotation == 0)
+                {
+                    result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                }
                 else
                 {
                     if (MathHelper.ToDegrees(rotation) == 90)
@@ -70,6 +74,12 @@ namespace TrainSimulator.Model
             else
             {
                 double cartPos = cart.position;
+
+                if (!direction && rotation == 0)
+                {
+                    result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
+                }
+                
 
                 if (rotation == 0)
                 {

@@ -1,4 +1,8 @@
+Content\trainCar.xnb
 Content\leftTurnNB.xnb
 Content\rightTurnNB.xnb
 Content\StraightNB.xnb
-Content\trainCar.xnb
+Content\switchLeft.xnb
+Content\switchRight.xnb
+Content\SignalGo.xnb
+Content\SignalStop.xnb

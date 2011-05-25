@@ -65,28 +65,28 @@ namespace TrainSimXNA
 
             train1.name = "Train #1";
             TrainCart cart1 = new TrainCart(Content);
-            cart1.currentTrack = railroad.tracks[1];
-            cart1.previousTrack = railroad.tracks[0];
+            cart1.currentTrack = railroad.tracks[0];
+            cart1.previousTrack = railroad.tracks[1];
             cart1.position = 80;
             cart1.maxSpeed = 60;
             cart1.setCart();
             train1.cartList.Add(cart1);
 
-            TrainCart cart2 = new TrainCart(Content);
-            cart2.currentTrack = railroad.tracks[1];
-            cart2.previousTrack = railroad.tracks[0];
-            cart2.position = 5;
-            cart2.maxSpeed = 60;
-            cart2.setCart();
-            train1.cartList.Add(cart2);
+            //TrainCart cart2 = new TrainCart(Content);
+            //cart2.currentTrack = railroad.tracks[1];
+            //cart2.previousTrack = railroad.tracks[0];
+            //cart2.position = 5;
+            //cart2.maxSpeed = 60;
+            //cart2.setCart();
+            //train1.cartList.Add(cart2);
 
-            TrainCart cart3 = new TrainCart(Content);
-            cart3.currentTrack = railroad.tracks[0];
-            cart3.previousTrack = railroad.tracks[7];
-            cart3.position = 30;
-            cart3.maxSpeed = 60;
-            cart3.setCart();
-            train1.cartList.Add(cart3);
+            //TrainCart cart3 = new TrainCart(Content);
+            //cart3.currentTrack = railroad.tracks[0];
+            //cart3.previousTrack = railroad.tracks[7];
+            //cart3.position = 30;
+            //cart3.maxSpeed = 60;
+            //cart3.setCart();
+            //train1.cartList.Add(cart3);
 
             train1.engine = new Engine(train1, 20);
             train1.engine.Start();
