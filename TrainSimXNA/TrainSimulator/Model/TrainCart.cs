@@ -54,24 +54,47 @@ namespace TrainSimulator.Model
             if (currentTrack is SwitchLeft || currentTrack is SwitchRight)
             {
                 if (currentTrack.prevTrack == previousTrack)
-                {                  
-                    position += amount;
-
-                    if (position > 100)
+                {
+                    if (currentTrack is SwitchLeft)
                     {
-                        position = position % 100;
-                        previousTrack = currentTrack;
+                        position -= amount;
+                        if (position < 0)
+                        {
+                            position = 100 - position;
+                            previousTrack = currentTrack;
 
-                        if (currentTrack.turn)
-                        {
-                            currentTrack = currentTrack.switchTrack;
+                            if (currentTrack.turn)
+                            {
+                                currentTrack = currentTrack.switchTrack;
+                            }
+                            else
+                            {
+                                currentTrack = currentTrack.nextTrack;
+                            }
                         }
-                        else
+                    }
+                    else
+                    {
+
+                        position += amount;
+
+                        if (position > 100)
                         {
-                            currentTrack = currentTrack.nextTrack;
+                            position = position % 100;
+                            previousTrack = currentTrack;
+
+                            if (currentTrack.turn)
+                            {
+                                currentTrack = currentTrack.switchTrack;
+                            }
+                            else
+                            {
+                                currentTrack = currentTrack.nextTrack;
+                            }
                         }
                     }
                 }
+
                 else if (currentTrack.nextTrack == previousTrack)
                 {
                     if (currentTrack is SwitchLeft)
@@ -127,7 +150,7 @@ namespace TrainSimulator.Model
                         position = 100 - position;
                         previousTrack = currentTrack;
                         currentTrack = currentTrack.prevTrack;
-                        
+
                     }
                 }
 
