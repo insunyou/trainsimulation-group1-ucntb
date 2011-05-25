@@ -11,7 +11,7 @@
       <Signal ID="1" InitialState="Go" X="210" Y="95"></Signal>
     </Signals>
   </Track>
-  <Track ID="5" PreviousTrack="6" NextTrack="13" SwitchTrackID="4" Type="SwitchLeft" Direction="False" X="125" Y="125" Rotation="0" Switch="True">
+  <Track ID="5" PreviousTrack="6" NextTrack="13" SwitchTrackID="4" Type="SwitchLeft" Direction="False" X="125" Y="125" Rotation="0" Switch="False">
   </Track>
   <Track ID="6" PreviousTrack="5" NextTrack="7" Type="StraightTrack" Direction="False" X="60" Y="157" Rotation="0">
   </Track>
