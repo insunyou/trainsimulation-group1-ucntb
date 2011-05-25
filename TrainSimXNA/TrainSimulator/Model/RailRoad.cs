@@ -8,15 +8,17 @@ namespace TrainSimulator.Model
     public class RailRoad
     {
         public List<Track> tracks { get; set; }
+        public List<TrainSet> trains { get; set; }
 
-        public RailRoad(List<Track> tracks)
-        {
-            this.tracks = tracks;
-        }
+        //public RailRoad(List<Track> tracks)
+        //{
+        //    this.tracks = tracks;
+        //}
 
         public RailRoad()
         {
             this.tracks = new List<Track>();
+            this.trains = new List<TrainSet>();
         }
 
         public Track findTrack(int id)

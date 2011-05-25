@@ -24,8 +24,12 @@ namespace TrainSimXNA
         public void updatePanels(RailRoad railroad)
         {
             lbTracks.Items.Clear();
+            lbTrains.Items.Clear();
             foreach(Track t in railroad.tracks)
                 lbTracks.Items.Add("Track #" + t.id);
+
+            foreach (TrainSet train in railroad.trains)
+                lbTrains.Items.Add(train.name + " " + String.Format("{0:0.00}", train.engine.currentSpeed));
         }
 
         public IntPtr getDrawSurface()

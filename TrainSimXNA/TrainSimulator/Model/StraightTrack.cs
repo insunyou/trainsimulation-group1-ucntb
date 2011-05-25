@@ -27,11 +27,11 @@ namespace TrainSimulator.Model
                 cartPos = 100 - cartPos;
             if (rotation == 0)
             {
-                result = new Vector2(Convert.ToInt32(position.X + (100 * cartPos / 100)), position.Y + 9);
+                result = new Vector2(Convert.ToInt32(position.X + (65 * cartPos / 100)), position.Y + 9);
             }
             else
             {
-                result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (100 * cartPos / 100)));
+                result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (65 * cartPos / 100)));
             }
 
             return result;

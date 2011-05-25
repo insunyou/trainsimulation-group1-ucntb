@@ -68,16 +68,6 @@
     <Compile Include="Model\TrainSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Graphics\leftTurnNB.png" />
-    <EmbeddedResource Include="Graphics\rightTurnNB.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Graphics\trainCar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Graphics\StraightNB.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
