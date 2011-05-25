@@ -42,6 +42,20 @@ namespace TrainSimulator.Model
             signals = new List<Signal>();
             sensors = new List<Sensor>();
         }
+
+        public Track getNextTrack(Track prevT)
+        {
+            if (this.prevTrack.id == prevT.id)
+            {
+                return this.nextTrack;
+            }
+            else if (this.nextTrack.id == prevT.id)
+            {
+                return this.prevTrack;
+            }
+
+            return null;
+        }
         
         public abstract Vector2 calculatCartPosition(TrainCart cart);
     }
