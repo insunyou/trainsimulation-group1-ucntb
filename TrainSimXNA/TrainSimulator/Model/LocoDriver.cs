@@ -14,7 +14,7 @@ namespace TrainSimulator.Model
         
         public LocoDriver()
         {
-
+            
         }
 
         public LocoDriver(string name, TrainSet myTrain, RailRoad railroad)
@@ -24,14 +24,35 @@ namespace TrainSimulator.Model
             this.railRoad = railRoad;
         }
 
+        public void freeToRun()
+        {
+            Track t = trainSet.cartList[0].currentTrack;
+            Track nextTrack = t.getNextTrack(t.prevTrack);
+            bool status = railRoad.isNextTrackFree(nextTrack);
+
+            if (status)
+            {                
+                Accelerate();
+            }
+            else
+            {
+                Deaccelerate();
+            }
+        }
+
+        public void shutDownEngine()
+        {
+            trainSet.engine.shutDown();
+        }
+
         public void Accelerate()
         {
-            trainSet.engine.engineState = (Engine.EngineState)1;
+            trainSet.engine.engineState = (Engine.EngineState)2;
         }
 
         public void Deaccelerate()
         {
-            trainSet.engine.engineState = (Engine.EngineState)2;
+            trainSet.engine.engineState = (Engine.EngineState)3;
         }
     }
 }

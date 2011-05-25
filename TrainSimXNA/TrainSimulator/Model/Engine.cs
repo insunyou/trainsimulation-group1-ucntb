@@ -17,7 +17,7 @@ namespace TrainSimulator.Model
         public bool forward { get; set; }
         public int lastUpdateTime { get; set; }
         public double lastUpdateSpeed { get; set; }
-        public enum EngineState { Accelerate, Deaccelerate }
+        public enum EngineState { Off, Accelerate, Deaccelerate }
         public EngineState engineState { get; set; }
         public double brakingSpeed { get; set; }
 
@@ -44,24 +44,35 @@ namespace TrainSimulator.Model
         //Vi burde aldrig få en distance på over 100.
         public void updatePostion(GameTime gameTime)
         {
-            System.Diagnostics.Debug.WriteLine("Speed: " + currentSpeed);
-
-            if (currentSpeed < maxSpeed && engineState == EngineState.Accelerate)
-                accelerate(gameTime);
-            else if(currentSpeed > 0 && engineState == EngineState.Deaccelerate)
-                Deaccelerate(gameTime);
-
-            double speed = (lastUpdateSpeed + currentSpeed) / 2;
-            double trackLength = 480;
-            double distance = (gameTime.ElapsedGameTime.Milliseconds * speed) / trackLength;
-
-            foreach(TrainCart tc in trainset.cartList)
+            if (engineState != EngineState.Off)
             {
-                tc.moveCart(distance);
-            }
+                System.Diagnostics.Debug.WriteLine("Speed: " + currentSpeed);
 
-            this.lastUpdateSpeed = currentSpeed;
-            //this.lastUpdateTime = gameTime.ElapsedGameTime.Milliseconds;
+                if (currentSpeed < maxSpeed && engineState == EngineState.Accelerate)
+                    accelerate(gameTime);
+                else if (currentSpeed > 0 && engineState == EngineState.Deaccelerate)
+                    Deaccelerate(gameTime);
+
+                double speed = (lastUpdateSpeed + currentSpeed) / 2;
+                double trackLength = 480;
+                double distance = (gameTime.ElapsedGameTime.Milliseconds * speed) / trackLength;
+
+                foreach (TrainCart tc in trainset.cartList)
+                {
+                    tc.moveCart(distance);
+                }
+
+                this.lastUpdateSpeed = currentSpeed;
+                //this.lastUpdateTime = gameTime.ElapsedGameTime.Milliseconds;
+            }
+        }
+
+        public void shutDown()
+        {
+            if (currentSpeed == 0)
+            {
+                engineState = EngineState.Off;
+            }
         }
 
         public void accelerate(GameTime gameTime)

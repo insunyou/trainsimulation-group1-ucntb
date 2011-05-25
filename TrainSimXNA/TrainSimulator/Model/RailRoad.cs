@@ -40,5 +40,17 @@ namespace TrainSimulator.Model
 
             return result;
         }
+
+        public bool isNextTrackFree(Track nextTrack)
+        {
+            if (getTrackStatus()[nextTrack] == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
