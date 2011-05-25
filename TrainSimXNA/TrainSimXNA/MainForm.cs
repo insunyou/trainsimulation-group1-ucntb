@@ -52,7 +52,14 @@ namespace TrainSimXNA
             }
 
             foreach (TrainSet train in railroad.trains)
-                lbTrains.Items.Add(train.name + "       " + String.Format("{0:0.00}", train.engine.currentSpeed));
+            {
+                string status = "";
+                if (train.engine.engineState == Engine.EngineState.Accelerate)
+                    status = "   Accelerating";
+                else if (train.engine.engineState == Engine.EngineState.Deaccelerate)
+                    status = "   Decelerating";
+                lbTrains.Items.Add(train.name + "       " + String.Format("{0:0.00}", train.engine.currentSpeed) + status);
+            }
         }
 
         public IntPtr getDrawSurface()
