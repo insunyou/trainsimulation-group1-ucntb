@@ -17,6 +17,9 @@ namespace TrainSimulator.Model
         public bool forward { get; set; }
         public int lastUpdateTime { get; set; }
         public double lastUpdateSpeed { get; set; }
+        public enum EngineState { Accelerate, Deaccelerate }
+        public EngineState engineState { get; set; }
+        public double brakingSpeed { get; set; }
 
         public Engine(TrainSet trainset, double maxSpeed)
         {
@@ -42,8 +45,12 @@ namespace TrainSimulator.Model
         public void updatePostion(GameTime gameTime)
         {
             System.Diagnostics.Debug.WriteLine("Speed: " + currentSpeed);
-            if (currentSpeed < maxSpeed)
+
+            if (currentSpeed < maxSpeed && engineState == EngineState.Accelerate)
                 accelerate(gameTime);
+            else if(currentSpeed > 0 && engineState == EngineState.Deaccelerate)
+                Deaccelerate(gameTime);
+
             double speed = (lastUpdateSpeed + currentSpeed) / 2;
             double trackLength = 480;
             double distance = (gameTime.ElapsedGameTime.Milliseconds * speed) / trackLength;
@@ -59,7 +66,12 @@ namespace TrainSimulator.Model
 
         public void accelerate(GameTime gameTime)
         {
-            currentSpeed = (gameTime.ElapsedGameTime.Milliseconds) * accelerationSpeed + currentSpeed;            
+            currentSpeed = currentSpeed + (gameTime.ElapsedGameTime.Milliseconds) * accelerationSpeed;            
+        }
+
+        public void Deaccelerate(GameTime gameTime)
+        {
+            currentSpeed = currentSpeed - (gameTime.ElapsedGameTime.Milliseconds) * brakingSpeed;
         }
     }
 }
