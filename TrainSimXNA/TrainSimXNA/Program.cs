@@ -16,10 +16,6 @@ namespace TrainSimXNA
             game.onUpdate(new UpdatePanels(form.updatePanels));
             form.game = game;
 	        game.Run();
-            //using (Game1 game = new Game1())
-            //{
-            //    game.Run();
-            //}
         }
     }
 #endif
