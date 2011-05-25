@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainSimXNA", "TrainSimXNA\TrainSimXNA\TrainSimXNA.csproj", "{6BCBFD21-362B-4846-9014-3C0BE7DBC876}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TrainSimXNAContent", "TrainSimXNA\TrainSimXNAContent\TrainSimXNAContent.contentproj", "{78061E6B-D4C5-4641-9D5A-C7B51ACB1106}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainSimXNAContent", "TrainSimXNA\TrainSimXNAContent\TrainSimXNAContent.contentproj", "{78061E6B-D4C5-4641-9D5A-C7B51ACB1106}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainSimulator", "TrainSimXNA\TrainSimulator\TrainSimulator.csproj", "{81E2E134-4757-46AF-B8BE-D07361C526B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainEditor", "TrainEditor\TrainEditor\TrainEditor.csproj", "{C76096FA-EE52-48E2-9F9C-61DADD534101}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TrainEditorContent", "TrainEditor\TrainEditorContent\TrainEditorContent.contentproj", "{B49EDE82-4686-4AE8-A311-EDE22398FBD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,22 @@ Global
 		{81E2E134-4757-46AF-B8BE-D07361C526B9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{81E2E134-4757-46AF-B8BE-D07361C526B9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{81E2E134-4757-46AF-B8BE-D07361C526B9}.Release|x86.ActiveCfg = Release|Any CPU
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Debug|x86.ActiveCfg = Debug|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Debug|x86.Build.0 = Debug|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Release|Any CPU.ActiveCfg = Release|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Release|x86.ActiveCfg = Release|x86
+		{C76096FA-EE52-48E2-9F9C-61DADD534101}.Release|x86.Build.0 = Release|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Debug|x86.ActiveCfg = Debug|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Release|Any CPU.ActiveCfg = Release|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B49EDE82-4686-4AE8-A311-EDE22398FBD4}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
