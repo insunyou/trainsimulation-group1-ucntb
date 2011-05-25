@@ -21,9 +21,9 @@ namespace TrainSimulator.Model
         public Signal(int id, ContentManager content)
         {
             this.id = id;
-            this.state = State.Off;
-            goTexture = content.Load<Texture2D>("SignalOn");
-            stopTexture = content.Load<Texture2D>("SignalOff");
+            this.state = State.Go;
+            goTexture = content.Load<Texture2D>("SignalGo");
+            stopTexture = content.Load<Texture2D>("SignalStop");
         }
 
         public Texture2D getTexture()

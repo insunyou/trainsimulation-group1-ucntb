@@ -22,7 +22,15 @@ namespace TrainSimXNA
             lbTracks.Items.Clear();
             lbTracks.Items.Add("ID:               Occupied");
             lbTracks.Items.Add("");
+            
             lbTrains.Items.Clear();
+            lbTrains.Items.Add("ID:               Speed");
+            lbTrains.Items.Add("");
+
+            lbSignals.Items.Clear();
+            lbSignals.Items.Add("ID:                Status");
+            lbSignals.Items.Add("");
+
             Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
             foreach(Track t in tracks.Keys)
             {
@@ -30,10 +38,21 @@ namespace TrainSimXNA
                 if (tracks[t] != null)
                     status = "     " + tracks[t].name;
                 lbTracks.Items.Add("Track #" + t.id + status);
+
+                foreach (Signal s in t.signals)
+                {
+                    status = "";
+                    if (s.state == Signal.State.Go)
+                        status = "      Go";
+                    else
+                        status = "      Stop";
+                    lbSignals.Items.Add("Signal #" + s.id + status);
+
+                }
             }
 
             foreach (TrainSet train in railroad.trains)
-                lbTrains.Items.Add(train.name + " " + String.Format("{0:0.00}", train.engine.currentSpeed));
+                lbTrains.Items.Add(train.name + "       " + String.Format("{0:0.00}", train.engine.currentSpeed));
         }
 
         public IntPtr getDrawSurface()

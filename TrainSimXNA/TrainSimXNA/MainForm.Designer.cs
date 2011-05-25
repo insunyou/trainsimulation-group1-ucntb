@@ -34,6 +34,8 @@
             this.btnStartSim = new System.Windows.Forms.Button();
             this.lbTrains = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbSignals = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctSurface)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,11 +91,30 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Trains";
             // 
+            // lbSignals
+            // 
+            this.lbSignals.FormattingEnabled = true;
+            this.lbSignals.Location = new System.Drawing.Point(209, 351);
+            this.lbSignals.Name = "lbSignals";
+            this.lbSignals.Size = new System.Drawing.Size(178, 95);
+            this.lbSignals.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(206, 335);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Signals";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 480);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbSignals);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbTrains);
             this.Controls.Add(this.btnStartSim);
@@ -101,7 +122,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pctSurface);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Train Simulator Ultimate Edition 2011";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pctSurface)).EndInit();
             this.ResumeLayout(false);
@@ -117,6 +138,8 @@
         private System.Windows.Forms.Button btnStartSim;
         private System.Windows.Forms.ListBox lbTrains;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox lbSignals;
+        private System.Windows.Forms.Label label3;
 
     }
 }

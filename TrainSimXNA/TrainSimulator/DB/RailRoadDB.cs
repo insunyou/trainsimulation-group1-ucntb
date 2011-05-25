@@ -75,8 +75,7 @@ namespace TrainSimulator.DB
 
                 t.rotation = MathHelper.ToRadians(Convert.ToInt32(n.Attributes.GetNamedItem("Rotation").Value));
 
-                Vector2 point = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
-                t.position = point;
+                t.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
                 t.id = Convert.ToInt32(n.Attributes.GetNamedItem("ID").Value);
 
                 foreach (XmlNode nn in n.ChildNodes)
@@ -95,6 +94,7 @@ namespace TrainSimulator.DB
                             }
 
                             t.signals.Add(s);
+                            System.Diagnostics.Debug.WriteLine("Signal added");
                         }
                         else if (nnn.Name == "Sensor")
                         {
