@@ -67,8 +67,8 @@ namespace TrainSimXNA
             train1.name = "Train #1";
             TrainCart cart1 = new TrainCart(Content);
             cart1.currentTrack = railroad.tracks[1];
-            cart1.previousTrack = railroad.tracks[0];
-            cart1.position = 80;
+            cart1.previousTrack = railroad.tracks[2];
+            cart1.position = 10;
             cart1.maxSpeed = 60;
             cart1.setCart();
             train1.cartList.Add(cart1);

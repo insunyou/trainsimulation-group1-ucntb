@@ -8,7 +8,6 @@ namespace TrainSimulator.Model
 {
     public class StraightTrack : Track
     {
-
         //public StraightTrack(int id, Track nextTrack, Track prevTrack, List<Signal> signals, List<Sensor> sensors, Bitmap gfx, Point position)
         //    : base(id, nextTrack, prevTrack, signals, sensors, gfx, position, false)
         //{
@@ -23,17 +22,22 @@ namespace TrainSimulator.Model
         {
             Vector2 result = new Vector2(0, 0);
             double cartPos = cart.position;
-            if (direction == false)
-                cartPos = 100 - cartPos;
-            if (rotation == 0)
+
+            if (MathHelper.ToDegrees(rotation) == 0 || MathHelper.ToDegrees(rotation) == 180)
             {
+                if (cart.currentPos.X <= cart.previousTrack.position.X)
+                    cartPos = 100 - cartPos;
+
                 result = new Vector2(Convert.ToInt32(position.X + (65 * cartPos / 100)), position.Y + 9);
             }
-            else
+            else if (MathHelper.ToDegrees(rotation) == 90 || MathHelper.ToDegrees(rotation) == 270)
             {
+                if (cart.currentPos.Y <= cart.previousTrack.position.Y)
+                    cartPos = 100 - cartPos;
+
                 result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (65 * cartPos / 100)));
             }
-
+            
             return result;
         }
     }

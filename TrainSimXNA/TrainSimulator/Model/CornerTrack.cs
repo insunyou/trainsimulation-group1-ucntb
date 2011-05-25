@@ -24,7 +24,12 @@ namespace TrainSimulator.Model
             int offset = 47;
             int radius = 38;
 
-            int angle = Convert.ToInt32((90 * cart.position / 100) + MathHelper.ToDegrees(rotation));
+            double cartPos = cart.position;
+          
+            if (cart.previousTrack != prevTrack)
+                cartPos = 100 - cartPos;
+          
+            int angle = Convert.ToInt32((90 * cartPos / 100) + MathHelper.ToDegrees(rotation));
             int moveAngle = angle - 90;
             Vector2 result = new Vector2();
             if  (MathHelper.ToDegrees(rotation) == 90)
