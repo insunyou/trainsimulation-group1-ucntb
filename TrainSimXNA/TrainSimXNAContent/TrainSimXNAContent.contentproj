@@ -61,6 +61,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SignalGo.png">
+      <Name>SignalGo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SignalStop.png">
+      <Name>SignalStop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="StraightNB.png">
       <Name>StraightNB</Name>
       <Importer>TextureImporter</Importer>

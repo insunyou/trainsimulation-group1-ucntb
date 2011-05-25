@@ -141,7 +141,10 @@ namespace TrainSimXNA
             foreach(Track t in railroad.tracks)
             {
                 spriteBatch.Draw(t.gfx, t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
+                foreach(Signal s in t.signals)
+                    spriteBatch.Draw(s.getTexture(), t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
             }
+
             foreach (TrainSet train in railroad.trains)
                 foreach(TrainCart cart in train.cartList)
                 {

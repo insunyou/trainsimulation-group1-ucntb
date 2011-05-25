@@ -78,7 +78,7 @@ namespace TrainSimulator.DB
                     {
                         if (nnn.Name == "Signal")
                         {
-                            Signal s = new Signal(Convert.ToInt32(nnn.Attributes.GetNamedItem("ID").Value));
+                            Signal s = new Signal(Convert.ToInt32(nnn.Attributes.GetNamedItem("ID").Value), content);
                             s.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
                             switch (nnn.Attributes.GetNamedItem("ID").Value)
                             {
