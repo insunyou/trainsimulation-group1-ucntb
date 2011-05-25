@@ -5,11 +5,11 @@
   </Track>
   <Track ID="2" PreviousTrack="1" NextTrack="3" Type="StraightTrack" Direction="True" X="60" Y="10" Rotation="0">
   </Track>
-  <Track ID="3" PreviousTrack="2" NextTrack="3" SwitchTrackID="1" Type="SwitchTrack" Direction="True" X="125" Y="10" Rotation="0" Switch="true">
+  <Track ID="3" PreviousTrack="2" NextTrack="9" SwitchTrackID="4" Type="SwitchRight" Direction="True" X="125" Y="10" Rotation="0" Switch="False">
   </Track>
   <Track ID="4" PreviousTrack="3" NextTrack="5" Type="StraightTrack" Direction="True" X="175" Y="60" Rotation="90">
   </Track>
-  <Track ID="5" PreviousTrack="4" NextTrack="6" SwitchTrackID="1" Type="SwitchTrack" Direction="False" X="125" Y="125" Rotation="0" Switch="true">
+  <Track ID="5" PreviousTrack="6" NextTrack="13" SwitchTrackID="4" Type="SwitchLeft" Direction="False" X="125" Y="125" Rotation="0" Switch="True">
   </Track>
   <Track ID="6" PreviousTrack="5" NextTrack="7" Type="StraightTrack" Direction="False" X="60" Y="157" Rotation="0">
   </Track>
@@ -18,4 +18,15 @@
   <Track ID="8" PreviousTrack="7" NextTrack="1" Type="StraightTrack" Direction="False" X="28" Y="60" Rotation="90">
   </Track>
   
+  
+  <Track ID="9" PreviousTrack="3" NextTrack="10" Type="StraightTrack" Direction="True" X="175" Y="10" Rotation="0">
+  </Track>
+  <Track ID="10" PreviousTrack="9" NextTrack="11" Type="CornerTrack" Direction="True" X="240" Y="10" Rotation="0">
+  </Track>
+  <Track ID="11" PreviousTrack="10" NextTrack="12" Type="StraightTrack" Direction="True" X="289" Y="60" Rotation="90">
+  </Track>
+  <Track ID="12" PreviousTrack="11" NextTrack="13" Type="CornerTrack" Direction="True" X="289" Y="125" Rotation="90">
+  </Track>
+  <Track ID="13" PreviousTrack="12" NextTrack="5" Type="StraightTrack" Direction="False" X="175" Y="157" Rotation="0">
+  </Track>
 </RailRoad>
