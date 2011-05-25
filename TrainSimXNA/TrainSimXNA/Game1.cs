@@ -67,7 +67,7 @@ namespace TrainSimXNA
             train1.name = "Train #1";
             TrainCart cart1 = new TrainCart(Content);
             cart1.currentTrack = railroad.tracks[1];
-            cart1.previousTrack = railroad.tracks[2];
+            cart1.previousTrack = railroad.tracks[0];
             cart1.position = 10;
             cart1.maxSpeed = 60;
             cart1.setCart();
@@ -95,7 +95,7 @@ namespace TrainSimXNA
             railroad.trains.Add(train1);
 
             locoDriver = new LocoDriver("Per", train1, railroad);
-
+            locoDriver.freeToRun();
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -119,16 +119,9 @@ namespace TrainSimXNA
         {
             if (runSim)
             {
-                locoDriver.freeToRun();
                 foreach (TrainSet train in railroad.trains)
                 {
-                //    //while (train.engine.currentSpeed < 10)
-                //    //    train.engine.accelerate(gameTime);
                     train.engine.updatePostion(gameTime);
-                //    //foreach (TrainCart cart in train.cartList)
-                //    //{
-                //    //    cart.moveCart(2);
-                //    //}
                 }
             }
             base.Update(gameTime);
@@ -157,7 +150,7 @@ namespace TrainSimXNA
                 }
             spriteBatch.End();
             milisecondsPanels += gameTime.ElapsedGameTime.Milliseconds;
-            if (milisecondsPanels > 1000)
+            if (milisecondsPanels > 200)
             {
                 updatePanels(railroad);
                 milisecondsPanels = 0;
