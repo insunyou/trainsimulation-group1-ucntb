@@ -50,7 +50,7 @@ namespace TrainSimulator.Model
                     }
                 }
             }
-            else if (currentTrack is SwitchLeft)
+            else if (currentTrack is SwitchLeft || currentTrack is SwitchRight)
             {
                 position += amount;
                 if (position > 100)
@@ -77,32 +77,32 @@ namespace TrainSimulator.Model
 
                 }
             }
-            else if (currentTrack is SwitchRight)
-            {
-                position += amount;
-                if (position > 100)
-                {
-                    position = position % 100;
-                    if (previousTrack == currentTrack.prevTrack)
-                    {
-                        if (currentTrack.turn)
-                        {
-                            previousTrack = currentTrack;
-                            currentTrack = currentTrack.switchTrack;
-                        }
-                        else
-                        {
-                            previousTrack = currentTrack;
-                            currentTrack = currentTrack.nextTrack;
-                        }
-                    }
-                    else
-                    {
-                        previousTrack = currentTrack;
-                        currentTrack = currentTrack.prevTrack;
-                    }
-                }
-            }
+            //else if (currentTrack is SwitchRight)
+            //{
+            //    position += amount;
+            //    if (position > 100)
+            //    {
+            //        position = position % 100;
+            //        if (previousTrack == currentTrack.prevTrack)
+            //        {
+            //            if (currentTrack.turn)
+            //            {
+            //                previousTrack = currentTrack;
+            //                currentTrack = currentTrack.switchTrack;
+            //            }
+            //            else
+            //            {
+            //                previousTrack = currentTrack;
+            //                currentTrack = currentTrack.nextTrack;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            previousTrack = currentTrack;
+            //            currentTrack = currentTrack.prevTrack;
+            //        }
+            //    }
+            //}
 
             currentPos = currentTrack.calculatCartPosition(this);
         }
