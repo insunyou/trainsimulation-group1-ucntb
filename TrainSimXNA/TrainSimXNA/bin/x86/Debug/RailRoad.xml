@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <RailRoad>
   <Track ID="1" PreviousTrack="8" NextTrack="2" Type="CornerTrack" Direction="True" X="10" Y="60" Rotation="270">
+    <Signal ID="1" InitialState="Go" X="10" Y="10"></Signal>
   </Track>
   <Track ID="2" PreviousTrack="1" NextTrack="3" Type="StraightTrack" Direction="True" X="60" Y="10" Rotation="0">
   </Track>

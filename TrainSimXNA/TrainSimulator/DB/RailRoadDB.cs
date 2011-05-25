@@ -73,6 +73,14 @@ namespace TrainSimulator.DB
                         if (nnn.Name == "Signal")
                         {
                             Signal s = new Signal(Convert.ToInt32(nnn.Attributes.GetNamedItem("ID").Value));
+                            s.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
+                            switch (nnn.Attributes.GetNamedItem("ID").Value)
+                            {
+                                case "Stop": s.state = Signal.State.Stop; break;
+                                case "Go": s.state = Signal.State.Go; break;
+                                case "Off": s.state = Signal.State.Off; break;
+                            }
+
                             t.signals.Add(s);
                         }
                         else if (nnn.Name == "Sensor")
