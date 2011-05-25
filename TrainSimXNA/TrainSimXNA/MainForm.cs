@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TrainSimulator.Model;
 
@@ -15,6 +10,7 @@ namespace TrainSimXNA
     public partial class MainForm : Form
     {
         public Game1 game { get; set; }
+        private bool running;
 
         public MainForm()
         {
@@ -24,9 +20,17 @@ namespace TrainSimXNA
         public void updatePanels(RailRoad railroad)
         {
             lbTracks.Items.Clear();
+            lbTracks.Items.Add("ID:               Occupied");
+            lbTracks.Items.Add("");
             lbTrains.Items.Clear();
-            foreach(Track t in railroad.tracks)
-                lbTracks.Items.Add("Track #" + t.id);
+            Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
+            foreach(Track t in tracks.Keys)
+            {
+                string status = "";
+                if (tracks[t] != null)
+                    status = "     " + tracks[t].name;
+                lbTracks.Items.Add("Track #" + t.id + status);
+            }
 
             foreach (TrainSet train in railroad.trains)
                 lbTrains.Items.Add(train.name + " " + String.Format("{0:0.00}", train.engine.currentSpeed));
@@ -44,7 +48,18 @@ namespace TrainSimXNA
 
         private void btnStartSim_Click(object sender, EventArgs e)
         {
-            game.startSim();
+            if (running)
+            {
+                btnStartSim.Text = "Start simulator";
+                running = false;
+                game.stopSim();
+            }
+            else
+            {
+                btnStartSim.Text = "Stop simulator";
+                running = true;
+                game.startSim();
+            }
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TrainSimulator.Model
 {
@@ -9,11 +6,6 @@ namespace TrainSimulator.Model
     {
         public List<Track> tracks { get; set; }
         public List<TrainSet> trains { get; set; }
-
-        //public RailRoad(List<Track> tracks)
-        //{
-        //    this.tracks = tracks;
-        //}
 
         public RailRoad()
         {
@@ -30,6 +22,23 @@ namespace TrainSimulator.Model
             }
 
             return null;
+        }
+
+        public Dictionary<Track, TrainSet> getTrackStatus()
+        {
+            Dictionary<Track, TrainSet> result = new Dictionary<Track, TrainSet>();
+            foreach (Track t in tracks)
+            {
+                result.Add(t, null);
+                foreach (TrainSet train in trains)
+                {
+                    foreach (TrainCart cart in train.cartList)
+                        if (cart.currentTrack.id == t.id)
+                            result[t] = train;
+                }
+            }
+
+            return result;
         }
     }
 }
