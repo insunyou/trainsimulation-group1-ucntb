@@ -39,6 +39,7 @@ namespace TrainSimulator.Model
             lastUpdateSpeed = 0;
             //lastUpdateTime = DateTime.Now.Millisecond * 1000;
             accelerationSpeed = 0.00277;
+            brakingSpeed = 0.00277;
         }
 
         //Vi burde aldrig få en distance på over 100.
@@ -46,8 +47,6 @@ namespace TrainSimulator.Model
         {
             if (engineState != EngineState.Off)
             {
-                System.Diagnostics.Debug.WriteLine("Speed: " + currentSpeed);
-
                 if (currentSpeed < maxSpeed && engineState == EngineState.Accelerate)
                     accelerate(gameTime);
                 else if (currentSpeed > 0 && engineState == EngineState.Deaccelerate)
@@ -77,12 +76,14 @@ namespace TrainSimulator.Model
 
         public void accelerate(GameTime gameTime)
         {
-            currentSpeed = currentSpeed + (gameTime.ElapsedGameTime.Milliseconds) * accelerationSpeed;            
+            currentSpeed = currentSpeed + (gameTime.ElapsedGameTime.Milliseconds * accelerationSpeed);            
         }
 
         public void Deaccelerate(GameTime gameTime)
         {
-            currentSpeed = currentSpeed - (gameTime.ElapsedGameTime.Milliseconds) * brakingSpeed;
+            currentSpeed = currentSpeed - (gameTime.ElapsedGameTime.Milliseconds * brakingSpeed);
+            if (currentSpeed < 0)
+                currentSpeed = 0;
         }
     }
 }

@@ -61,20 +61,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SignalGo.png">
-      <Name>SignalGo</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="SignalStop.png">
-      <Name>SignalStop</Name>
+    <Compile Include="StraightNB.png">
+      <Name>StraightNB</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StraightNB.png">
-      <Name>StraightNB</Name>
+    <Compile Include="switchLeft.png">
+      <Name>switchLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="switchRight.png">
+      <Name>switchRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SignalGo.png">
+      <Name>SignalGo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SignalStop.png">
+      <Name>SignalStop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

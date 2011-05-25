@@ -27,6 +27,7 @@ namespace TrainSimXNA
         private IntPtr drawSurface;
 
         private RailRoad railroad;
+        private LocoDriver locoDriver;
         private bool runSim = false;
 
         public Game1(IntPtr drawSurface, int width, int height)
@@ -58,7 +59,7 @@ namespace TrainSimXNA
         protected override void LoadContent()
         {
             RailRoadCtr rCtr = new RailRoadCtr();
-            railroad = rCtr.loadRailRoad("RailRoad.xml", Content);
+            railroad = rCtr.loadRailRoad("RailRoad2.xml", Content);
 
             TrainSet train1;
             train1 = new TrainSet();
@@ -93,6 +94,9 @@ namespace TrainSimXNA
 
             railroad.trains.Add(train1);
 
+            locoDriver = new LocoDriver("Per", train1, railroad);
+
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -115,15 +119,16 @@ namespace TrainSimXNA
         {
             if (runSim)
             {
+                locoDriver.freeToRun();
                 foreach (TrainSet train in railroad.trains)
                 {
-                    //while (train.engine.currentSpeed < 10)
-                    //    train.engine.accelerate(gameTime);
+                //    //while (train.engine.currentSpeed < 10)
+                //    //    train.engine.accelerate(gameTime);
                     train.engine.updatePostion(gameTime);
-                    //foreach (TrainCart cart in train.cartList)
-                    //{
-                    //    cart.moveCart(2);
-                    //}
+                //    //foreach (TrainCart cart in train.cartList)
+                //    //{
+                //    //    cart.moveCart(2);
+                //    //}
                 }
             }
             base.Update(gameTime);
@@ -142,7 +147,7 @@ namespace TrainSimXNA
             {
                 spriteBatch.Draw(t.gfx, t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
                 foreach(Signal s in t.signals)
-                    spriteBatch.Draw(s.getTexture(), t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(s.getTexture(), s.position, null, new Color(255, 255, 255, 255), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
             }
 
             foreach (TrainSet train in railroad.trains)
