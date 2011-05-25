@@ -44,6 +44,22 @@ namespace TrainSimulator.DB
                         t.gfx = content.Load<Texture2D>("leftTurnNB");
                     }
                 }
+
+                if (type.Equals("SwitchTrack"))
+                {
+                    t = new SwitchTrack();
+                    t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
+                    t.turn = Convert.ToBoolean(n.Attributes.GetNamedItem("Switch").Value.ToString());
+                    if (t.direction)
+                    {
+                        t.gfx = content.Load<Texture2D>("switchRight");
+                    }
+                    else
+                    {
+                        t.gfx = content.Load<Texture2D>("switchLeft");
+                    }
+                }
+
                 t.rotation = MathHelper.ToRadians(Convert.ToInt32(n.Attributes.GetNamedItem("Rotation").Value));                
 
                 Vector2 point = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));

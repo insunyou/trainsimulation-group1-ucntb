@@ -13,6 +13,7 @@ namespace TrainSimulator.Model
         public int id { get; set; }
         public Track nextTrack { get; set; }
         public Track prevTrack { get; set; }
+        public Track switchTrack { get; set; }
         public List<Signal> signals { get; set; }
         public List<Sensor> sensors { get; set; }
         public Texture2D gfx { get; set; }
@@ -22,6 +23,7 @@ namespace TrainSimulator.Model
         public Vector2 moveVector { get; set; }
         //True = Right, False = Left
         public bool direction { get; set; }
+        public bool turn { get; set; }
 
         //public Track(int id, Track nextTrack, Track prevTrack, List<Signal> signals, List<Sensor> sensors, Bitmap gfx, Point position, bool direction)
         //{
