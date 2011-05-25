@@ -59,6 +59,7 @@
     <Compile Include="Model\CornerTrack.cs" />
     <Compile Include="Model\Engine.cs" />
     <Compile Include="Model\ITrack.cs" />
+    <Compile Include="Model\LocoDriver.cs" />
     <Compile Include="Model\RailRoad.cs" />
     <Compile Include="Model\Sensor.cs" />
     <Compile Include="Model\Signal.cs" />
