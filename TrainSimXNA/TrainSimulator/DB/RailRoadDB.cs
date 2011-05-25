@@ -50,6 +50,12 @@ namespace TrainSimulator.DB
                     t = new SwitchTrack();
                     t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
                     t.turn = Convert.ToBoolean(n.Attributes.GetNamedItem("Switch").Value.ToString());
+
+                    if (t.turn)
+                    {
+                        t.nextTrack = rr.findTrack(Convert.ToInt32(n.Attributes.GetNamedItem("SwitchTrackID").Value.ToString()));
+                    }
+
                     if (t.direction)
                     {
                         t.gfx = content.Load<Texture2D>("switchRight");
@@ -102,6 +108,10 @@ namespace TrainSimulator.DB
                     {
                         t.nextTrack = rr.findTrack(Convert.ToInt32(xml.Attributes.GetNamedItem("NextTrack").Value));
                         t.prevTrack = rr.findTrack(Convert.ToInt32(xml.Attributes.GetNamedItem("PreviousTrack").Value));
+                        //if (xml.Attributes.GetNamedItem("SwitchTrack").Value != "")
+                        //{
+                        //    t.switchTrack = rr.findTrack(Convert.ToInt32(xml.Attributes.GetNamedItem("SwitchTrack").Value));
+                        //}
                     }
                 }
             }
