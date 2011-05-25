@@ -26,7 +26,23 @@ namespace TrainSimulator.Model
 
             Vector2 result = new Vector2();
 
-            if (turn)
+            if (cart.previousTrack == nextTrack)
+            {
+                double cartPos = cart.position;
+
+                if (direction == false)
+                    cartPos = 100 - cartPos;
+
+                if (rotation == 0)
+                {
+                    result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 9);
+                }
+                else
+                {
+                    result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
+                }
+            }
+            else if (cart.previousTrack == switchTrack)
             {
                 if (MathHelper.ToDegrees(rotation) == 90)
                     result = new Vector2(position.X - offset + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
@@ -38,25 +54,37 @@ namespace TrainSimulator.Model
                     result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
 
                 cart.rotation = (float)(angle * Math.PI / 180);
-                return result;
             }
-            else
+            else if(cart.previousTrack == prevTrack)
             {
-                double cartPos = cart.position;
-
-                if (!direction && rotation == 0)
+                if (turn)
                 {
-                    result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
-                }
+                    if (MathHelper.ToDegrees(rotation) == 90)
+                        result = new Vector2(position.X - offset + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                    else if (MathHelper.ToDegrees(rotation) == 180)
+                        result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y - offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                    else if (MathHelper.ToDegrees(rotation) == 270)
+                        result = new Vector2(position.X + offset + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                    else
+                        result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
 
-
-                if (rotation == 0)
-                {
-                    result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 9);
+                    cart.rotation = (float)(angle * Math.PI / 180);
+                    return result;
                 }
                 else
                 {
-                    result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
+                    double cartPos = cart.position;
+
+                    if (direction == false)
+                        cartPos = 100 - cartPos;
+                    if (rotation == 0)
+                    {
+                        result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 9);
+                    }
+                    else
+                    {
+                        result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
+                    }
                 }
             }
 

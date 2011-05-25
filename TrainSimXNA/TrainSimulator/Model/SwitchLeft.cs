@@ -42,6 +42,8 @@ namespace TrainSimulator.Model
             }
             else if (cart.previousTrack == switchTrack)
             {
+
+
                 if (MathHelper.ToDegrees(rotation) == 90)
                     result = new Vector2(position.X - offset + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
                 else if (MathHelper.ToDegrees(rotation) == 180)
@@ -49,7 +51,11 @@ namespace TrainSimulator.Model
                 else if (MathHelper.ToDegrees(rotation) == 270)
                     result = new Vector2(position.X + offset + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
                 else
-                    result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + offset + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                {
+                    angle += 90;
+                    moveAngle += 90;
+                    result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
+                }
 
                 cart.rotation = (float)(angle * Math.PI / 180);
                 
