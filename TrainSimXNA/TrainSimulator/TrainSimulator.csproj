@@ -64,6 +64,8 @@
     <Compile Include="Model\Sensor.cs" />
     <Compile Include="Model\Signal.cs" />
     <Compile Include="Model\StraightTrack.cs" />
+    <Compile Include="Model\SwitchLeft.cs" />
+    <Compile Include="Model\SwitchRight.cs" />
     <Compile Include="Model\SwitchTrack.cs" />
     <Compile Include="Model\Track.cs" />
     <Compile Include="Model\TrainCart.cs" />

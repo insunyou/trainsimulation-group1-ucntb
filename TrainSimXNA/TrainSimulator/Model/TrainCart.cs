@@ -42,40 +42,98 @@ namespace TrainSimulator.Model
 
         public void moveCart(double amount)
         {
+
+            System.Diagnostics.Debug.WriteLine("Position: " + position);
+
             //position = (position + amount);
 
             //if (position > 100)
             //{
-                //position = position % 100;
+            //position = position % 100;
 
-            if (currentTrack.prevTrack == previousTrack)
+            if (currentTrack is SwitchLeft || currentTrack is SwitchRight)
             {
-                position += amount;
-                if (position > 100)
-                {
-                    position = position % 100;
-                    previousTrack = currentTrack;
-                    currentTrack = currentTrack.nextTrack;
+                if (currentTrack.prevTrack == previousTrack)
+                {                  
+                    position += amount;
+
+                    if (position > 100)
+                    {
+                        position = position % 100;
+                        previousTrack = currentTrack;
+
+                        if (currentTrack.turn)
+                        {
+                            currentTrack = currentTrack.switchTrack;
+                        }
+                        else
+                        {
+                            currentTrack = currentTrack.nextTrack;
+                        }
+                    }
                 }
+                else if (currentTrack.nextTrack == previousTrack)
+                {
+                    if (currentTrack is SwitchLeft)
+                    {
+                        position += amount;
+                        if (position > 100)
+                        {
+                            position = position % 100;
+                            previousTrack = currentTrack;
+                            currentTrack = currentTrack.prevTrack;
+                        }
+                    }
+                    else
+                    {
+                        position -= amount;
+                        if (position < 0)
+                        {
+                            position = 100 - position;
+                            previousTrack = currentTrack;
+                            currentTrack = currentTrack.prevTrack;
+                        }
+                    }
+                }
+                else if (currentTrack.switchTrack == previousTrack)
+                {
+                    position += amount;
+                    if (position > 100)
+                    {
+                        position = position % 100;
+                        previousTrack = currentTrack;
+                        currentTrack = currentTrack.prevTrack;
+                    }
+                }
+
             }
             else
             {
-                position -= amount;
-                if (position < 0)
+                if (currentTrack.prevTrack == previousTrack)
                 {
-                    position = 100 - position;
-                    previousTrack = currentTrack;
-                    currentTrack = currentTrack.prevTrack;
+                    position += amount;
+                    if (position > 100)
+                    {
+                        position = position % 100;
+                        previousTrack = currentTrack;
+                        currentTrack = currentTrack.nextTrack;
+                    }
                 }
-            }
-            //}
+                else
+                {
+                    position -= amount;
+                    if (position < 0)
+                    {
+                        position = 100 - position;
+                        previousTrack = currentTrack;
+                        currentTrack = currentTrack.prevTrack;
+                        
+                    }
+                }
 
+            }
             currentPos = currentTrack.calculatCartPosition(this);
-            //Point deltaPoint = new Point();
-            //deltaPoint.X = point.X - currentPos.X;
-            //deltaPoint.Y = point.Y - currentPos.Y;
-            //currentPos = point;
-            //transform.Translate(deltaPoint.X, deltaPoint.Y);
+
         }
 
         public void createRotation(float total)
