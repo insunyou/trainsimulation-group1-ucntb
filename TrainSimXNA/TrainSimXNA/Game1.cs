@@ -27,7 +27,6 @@ namespace TrainSimXNA
         private IntPtr drawSurface;
 
         private RailRoad railroad;
-        private List<TrainSet> trains;
         private bool runSim = false;
 
         public Game1(IntPtr drawSurface, int width, int height)
@@ -61,7 +60,6 @@ namespace TrainSimXNA
             RailRoadCtr rCtr = new RailRoadCtr();
             railroad = rCtr.loadRailRoad("RailRoad.xml", Content);
 
-            trains = new List<TrainSimulator.Model.TrainSet>();
             TrainSet train1;
             train1 = new TrainSet();
 
@@ -69,15 +67,31 @@ namespace TrainSimXNA
             TrainCart cart1 = new TrainCart(Content);
             cart1.currentTrack = railroad.tracks[1];
             cart1.previousTrack = railroad.tracks[0];
-            cart1.position = 10;
+            cart1.position = 80;
             cart1.maxSpeed = 60;
             cart1.setCart();
             train1.cartList.Add(cart1);
 
+            TrainCart cart2 = new TrainCart(Content);
+            cart2.currentTrack = railroad.tracks[1];
+            cart2.previousTrack = railroad.tracks[0];
+            cart2.position = 5;
+            cart2.maxSpeed = 60;
+            cart2.setCart();
+            train1.cartList.Add(cart2);
+
+            TrainCart cart3 = new TrainCart(Content);
+            cart3.currentTrack = railroad.tracks[0];
+            cart3.previousTrack = railroad.tracks[7];
+            cart3.position = 30;
+            cart3.maxSpeed = 60;
+            cart3.setCart();
+            train1.cartList.Add(cart3);
+
             train1.engine = new Engine(train1, 20);
             train1.engine.Start();
 
-            trains.Add(train1);
+            railroad.trains.Add(train1);
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -101,7 +115,7 @@ namespace TrainSimXNA
         {
             if (runSim)
             {
-                foreach (TrainSet train in trains)
+                foreach (TrainSet train in railroad.trains)
                 {
                     //while (train.engine.currentSpeed < 10)
                     //    train.engine.accelerate(gameTime);
@@ -128,7 +142,7 @@ namespace TrainSimXNA
             {
                 spriteBatch.Draw(t.gfx, t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
             }
-            foreach (TrainSet train in trains)
+            foreach (TrainSet train in railroad.trains)
                 foreach(TrainCart cart in train.cartList)
                 {
                     spriteBatch.Draw(cart.gfx, cart.currentPos, null, new Color(255, 255, 255, 255), cart.rotation, cart.origin, 1.0f, SpriteEffects.None, 0.0f);

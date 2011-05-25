@@ -59,6 +59,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="StraightNB.png">
       <Name>StraightNB</Name>
       <Importer>TextureImporter</Importer>
