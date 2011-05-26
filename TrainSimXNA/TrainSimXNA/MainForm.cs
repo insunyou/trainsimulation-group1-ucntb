@@ -26,26 +26,48 @@ namespace TrainSimXNA
             lbTrains.Items.Clear();
             lbTrains.Items.Add("ID:               Speed");
             lbTrains.Items.Add("");
-
-
            
             lbSignals.Items.Clear();
             lbSignals.Items.Add("ID:                Status");
             lbSignals.Items.Add("");
-            
+
+            lbSensors.Items.Clear();
+            lbSensors.Items.Add("ID:                     Status");
+            lbSensors.Items.Add("");
+
             Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
             foreach(Track t in tracks.Keys)
             {
-                string status = "";
+                string status = "Track #" + t.id;
                 if (tracks[t] != null)
-                    status = "     " + tracks[t].name;
-                lbTracks.Items.Add("Track #" + t.id + status);
+                    status += "     " + tracks[t].name + "    ";
+                else
+                    status += "                      ";
+  
+                if(t is SwitchLeft || t is SwitchRight)
+                {
+                    if (t.turn)
+                        status += "Switched";
+                    else
+                        status += "Through";
+
+                }
+                lbTracks.Items.Add(status);
 
                 if (t.signal != null)
                 {
                     lbSignals.Items.Add(t.signal);
                 }
-                
+
+                if (t.sensor != null)
+                {
+                    status = "";
+                    if (t.sensor.state == Sensor.State.On)
+                        status = "          On";
+                    else
+                        status = "          Off";
+                    lbSensors.Items.Add("Sensor #" + t.sensor.id + status);
+                }              
             }
 
             foreach (TrainSet train in railroad.trains)
@@ -99,6 +121,14 @@ namespace TrainSimXNA
                 TrainSet t = (TrainSet)lbTrains.SelectedItem;
                 if (t.locoDriver.driverState == LocoDriver.DriverState.Off)
                     t.locoDriver.StartDriving();
+            }
+        }
+
+        private void lbTracks_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (lbTracks.SelectedIndex > 1)
+            {
+                game.railroad.tracks[lbTracks.SelectedIndex - 2].turn = !game.railroad.tracks[lbTracks.SelectedIndex - 2].turn;
             }
         }
     }

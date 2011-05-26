@@ -69,5 +69,22 @@ namespace TrainSimulator.Model
         }
         
         public abstract Vector2 calculatCartPosition(TrainCart cart);
+
+        //public override string ToString()
+        //{
+        //    string status = "";
+        //    //if (tracks[t] != null)
+        //    status = "Track #" + id;
+
+        //    if(this is SwitchLeft || this is SwitchRight)
+        //    {
+        //        if (turn)
+        //            status += "                        Switched";
+        //        else
+        //            status += "                        Through";
+
+        //    }
+        //    return status;
+        //}
     }
 }

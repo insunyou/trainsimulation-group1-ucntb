@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbSignals = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbSensors = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pctSurface)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,10 +65,11 @@
             this.lbTracks.Name = "lbTracks";
             this.lbTracks.Size = new System.Drawing.Size(165, 303);
             this.lbTracks.TabIndex = 2;
+            this.lbTracks.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTracks_MouseDown);
             // 
             // btnStartSim
             // 
-            this.btnStartSim.Location = new System.Drawing.Point(685, 372);
+            this.btnStartSim.Location = new System.Drawing.Point(685, 351);
             this.btnStartSim.Name = "btnStartSim";
             this.btnStartSim.Size = new System.Drawing.Size(165, 23);
             this.btnStartSim.TabIndex = 3;
@@ -79,7 +82,7 @@
             this.lbTrains.FormattingEnabled = true;
             this.lbTrains.Location = new System.Drawing.Point(12, 351);
             this.lbTrains.Name = "lbTrains";
-            this.lbTrains.Size = new System.Drawing.Size(179, 95);
+            this.lbTrains.Size = new System.Drawing.Size(252, 95);
             this.lbTrains.TabIndex = 4;
             this.lbTrains.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTrains_MouseDown);
             // 
@@ -95,7 +98,7 @@
             // lbSignals
             // 
             this.lbSignals.FormattingEnabled = true;
-            this.lbSignals.Location = new System.Drawing.Point(209, 351);
+            this.lbSignals.Location = new System.Drawing.Point(287, 351);
             this.lbSignals.Name = "lbSignals";
             this.lbSignals.Size = new System.Drawing.Size(178, 95);
             this.lbSignals.TabIndex = 6;
@@ -104,17 +107,36 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 335);
+            this.label3.Location = new System.Drawing.Point(284, 335);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Signals";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(483, 335);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Sensors";
+            // 
+            // lbSensors
+            // 
+            this.lbSensors.FormattingEnabled = true;
+            this.lbSensors.Location = new System.Drawing.Point(486, 351);
+            this.lbSensors.Name = "lbSensors";
+            this.lbSensors.Size = new System.Drawing.Size(174, 95);
+            this.lbSensors.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 480);
+            this.Controls.Add(this.lbSensors);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbSignals);
             this.Controls.Add(this.label2);
@@ -142,6 +164,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lbSignals;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox lbSensors;
 
     }
 }
