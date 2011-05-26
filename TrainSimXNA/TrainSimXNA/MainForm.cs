@@ -120,7 +120,10 @@ namespace TrainSimXNA
             {
                 TrainSet t = (TrainSet)lbTrains.SelectedItem;
                 if (t.locoDriver.driverState == LocoDriver.DriverState.Off)
+                {
                     t.locoDriver.StartDriving();
+                    game.playSound();
+                }
             }
         }
 
