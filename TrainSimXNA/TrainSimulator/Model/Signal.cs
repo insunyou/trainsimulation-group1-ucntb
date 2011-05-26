@@ -21,7 +21,7 @@ namespace TrainSimulator.Model
         public Signal(int id, ContentManager content)
         {
             this.id = id;
-            this.state = State.Stop;
+            this.state = State.Go;
             goTexture = content.Load<Texture2D>("SignalGo");
             stopTexture = content.Load<Texture2D>("SignalStop");
         }
@@ -30,8 +30,8 @@ namespace TrainSimulator.Model
         {
             switch (state)
             {
-                case State.Go: return goTexture; break;
-                case State.Stop: return stopTexture; break;
+                case State.Go: return goTexture;
+                case State.Stop: return stopTexture;
             }
             return null;
         }

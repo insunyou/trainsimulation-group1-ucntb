@@ -74,9 +74,7 @@ namespace TrainSimXNA
             railroad.trains.Add(train1);
 
             train1.locoDriver =  new LocoDriver("Per", train1, railroad);
-            train1.locoDriver.StartDriving();
-
-
+           
             TrainSet train2;
             train2 = new TrainSet("Train #2", new List<TrainCart>(), new Engine(10));
 
@@ -91,7 +89,6 @@ namespace TrainSimXNA
             railroad.trains.Add(train2);
 
             train2.locoDriver = new LocoDriver("Ole", train2, railroad);
-            train2.locoDriver.StartDriving();
             //TrainCart cart2 = new TrainCart(Content);
             //cart2.currentTrack = railroad.tracks[1];
             //cart2.previousTrack = railroad.tracks[0];
