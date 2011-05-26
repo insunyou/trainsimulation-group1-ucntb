@@ -4,12 +4,9 @@
   </Track>
   <Track ID="2" PreviousTrack="1" NextTrack="3" Type="StraightTrack" Direction="True" X="60" Y="10" Rotation="0">
   </Track>
-  <Track ID="3" PreviousTrack="2" NextTrack="9" SwitchTrackID="4" Type="SwitchRight" Direction="True" X="125" Y="10" Rotation="0" Switch="True">
+  <Track ID="3" PreviousTrack="2" NextTrack="9" SwitchTrackID="4" Type="SwitchRight" Direction="True" X="125" Y="10" Rotation="0" Switch="False">
   </Track>
   <Track ID="4" PreviousTrack="3" NextTrack="5" Type="StraightTrack" Direction="True" X="175" Y="60" Rotation="90">
-    <Signals>
-      <Signal ID="1" InitialState="Go" X="210" Y="95"></Signal>
-    </Signals>
   </Track>
   <Track ID="5" PreviousTrack="6" NextTrack="13" SwitchTrackID="4" Type="SwitchLeft" Direction="False" X="125" Y="125" Rotation="0" Switch="False">
   </Track>
@@ -22,6 +19,7 @@
   
   
   <Track ID="9" PreviousTrack="3" NextTrack="10" Type="StraightTrack" Direction="True" X="175" Y="10" Rotation="0">
+    <Signal ID="1" InitialState="Go" X="210" Y="95"></Signal>
   </Track>
   <Track ID="10" PreviousTrack="9" NextTrack="11" Type="CornerTrack" Direction="True" X="240" Y="10" Rotation="0">
   </Track>

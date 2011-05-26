@@ -27,10 +27,12 @@ namespace TrainSimXNA
             lbTrains.Items.Add("ID:               Speed");
             lbTrains.Items.Add("");
 
+
+           
             lbSignals.Items.Clear();
             lbSignals.Items.Add("ID:                Status");
             lbSignals.Items.Add("");
-
+            
             Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
             foreach(Track t in tracks.Keys)
             {
@@ -39,25 +41,24 @@ namespace TrainSimXNA
                     status = "     " + tracks[t].name;
                 lbTracks.Items.Add("Track #" + t.id + status);
 
-                foreach (Signal s in t.signals)
+                if (t.signal != null)
                 {
-                    status = "";
-                    if (s.state == Signal.State.Go)
-                        status = "      Go";
-                    else
-                        status = "      Stop";
-                    lbSignals.Items.Add("Signal #" + s.id + status);
-
+                    lbSignals.Items.Add(t.signal);
                 }
+                
             }
 
             foreach (TrainSet train in railroad.trains)
             {
                 string status = "";
-                if (train.engine.engineState == Engine.EngineState.Accelerate)
+                if (train.locoDriver.driverState == LocoDriver.DriverState.Accelerate)
                     status = "   Accelerating";
-                else if (train.engine.engineState == Engine.EngineState.Deaccelerate)
+                else if (train.locoDriver.driverState == LocoDriver.DriverState.Decelerate)
                     status = "   Decelerating";
+                else if (train.locoDriver.driverState == LocoDriver.DriverState.Cruise)
+                    status = "   Cruise";
+                else if (train.locoDriver.driverState == LocoDriver.DriverState.Stopped)
+                    status = "   Stopped";
                 lbTrains.Items.Add(train.name + "       " + String.Format("{0:0.00}", train.engine.currentSpeed) + status);
             }
         }
@@ -85,6 +86,18 @@ namespace TrainSimXNA
                 btnStartSim.Text = "Stop simulator";
                 running = true;
                 game.startSim();
+            }
+        }
+
+        private void lbSignals_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (lbSignals.SelectedIndex > 1)
+            {
+                Signal s = (Signal)lbSignals.SelectedItem;
+                if (s.state == Signal.State.Go)
+                    s.state = Signal.State.Stop;
+                else
+                    s.state = Signal.State.Go;
             }
         }
     }

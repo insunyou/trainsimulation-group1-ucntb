@@ -91,14 +91,14 @@ namespace TrainSimulator.DB
                                 case "Off": s.state = Signal.State.Off; break;
                             }
 
-                            t.signals.Add(s);
+                            t.signal = s;
                             System.Diagnostics.Debug.WriteLine("Signal added");
                         }
-                        else if (nn.Name == "Sensor")
-                        {
-                            Sensor s = new Sensor(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value));
-                            t.sensors.Add(s);
-                        }
+                        //else if (nn.Name == "Sensor")
+                        //{
+                        //    Sensor s = new Sensor(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value));
+                        //    t.sensors.Add(s);
+                        //}
                     
                 }
 
