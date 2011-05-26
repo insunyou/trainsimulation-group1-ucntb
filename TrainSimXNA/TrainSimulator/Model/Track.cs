@@ -14,10 +14,9 @@ namespace TrainSimulator.Model
         public Track nextTrack { get; set; }
         public Track prevTrack { get; set; }
         public Track switchTrack { get; set; }
-        public List<Signal> signals { get; set; }
-        public List<Sensor> sensors { get; set; }
+        public Signal signal { get; set; }
+        public Sensor sensor { get; set; }
         public Texture2D gfx { get; set; }
-        //public Vector2 origin { get; set; }
         public Vector2 position { get; set; }
         public float rotation { get; set; }
         public Vector2 moveVector { get; set; }
@@ -39,19 +38,26 @@ namespace TrainSimulator.Model
 
         public Track()
         {
-            signals = new List<Signal>();
-            sensors = new List<Sensor>();
+            //signals = new List<Signal>();
+            //sensors = new List<Sensor>();
         }
 
         public Track getNextTrack(Track prevT)
         {
-            if (this.prevTrack.id == prevT.id)
+            if (this is SwitchLeft || this is SwitchRight)
             {
-                return this.nextTrack;
+
             }
-            else if (this.nextTrack.id == prevT.id)
+            else
             {
-                return this.prevTrack;
+                if (this.prevTrack.id == prevT.id)
+                {
+                    return this.nextTrack;
+                }
+                else if (this.nextTrack.id == prevT.id)
+                {
+                    return this.prevTrack;
+                }
             }
 
             return null;

@@ -21,7 +21,7 @@ namespace TrainSimulator.Model
         public Signal(int id, ContentManager content)
         {
             this.id = id;
-            this.state = State.Go;
+            this.state = State.Stop;
             goTexture = content.Load<Texture2D>("SignalGo");
             stopTexture = content.Load<Texture2D>("SignalStop");
         }
@@ -36,5 +36,15 @@ namespace TrainSimulator.Model
             return null;
         }
 
+        public override string ToString()
+        {
+            string status = "";
+            if (state == Signal.State.Go)
+                status = "      Go";
+            else
+                status = "      Stop";
+
+            return "Signal #" + id + status;
+        }
     }
 }

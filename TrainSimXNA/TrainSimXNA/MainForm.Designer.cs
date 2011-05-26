@@ -98,6 +98,7 @@
             this.lbSignals.Name = "lbSignals";
             this.lbSignals.Size = new System.Drawing.Size(178, 95);
             this.lbSignals.TabIndex = 6;
+            this.lbSignals.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbSignals_MouseDown);
             // 
             // label3
             // 

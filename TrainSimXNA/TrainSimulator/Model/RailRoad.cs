@@ -41,16 +41,36 @@ namespace TrainSimulator.Model
             return result;
         }
 
-        public bool isNextTrackFree(Track nextTrack)
+        public TrainSet nextTrackStatus(Track nextTrack)
         {
-            if (getTrackStatus()[nextTrack] == null)
+            return getTrackStatus()[nextTrack];
+
+            //if (getTrackStatus()[nextTrack] == null)
+            //{
+            //    return ;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+        }
+
+        public Signal getNextSignal(Track nextTrack)
+        {
+            return findTrack(nextTrack.id).signal;
+        }
+
+        public Signal findSignal(int id)
+        {
+            foreach (Track t in tracks)
             {
-                return true;
+                if (t.signal != null)
+                {
+                    if (t.signal.id == id)
+                        return t.signal;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return null;
         }
     }
 }
