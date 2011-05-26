@@ -21,7 +21,7 @@ namespace TrainSimulator.Model
         public TrainSet trainSet { get; set; }
         public RailRoad railRoad { get; set; }
         public DriverState driverState { get; set; }
-        
+
         public LocoDriver(string name, TrainSet myTrain, RailRoad railroad)
         {
             this.name = name;
@@ -55,7 +55,6 @@ namespace TrainSimulator.Model
 
             TrainSet trainInFront = getTrainInFront();
             Signal signal = getNextSignal();
-
             if (trainInFront != null)
             {
                 if (trainInFront.engine.currentSpeed < trainSet.engine.currentSpeed)
@@ -156,7 +155,7 @@ namespace TrainSimulator.Model
             }
             if (signal == null && trainInFront == null)
                 driverState = DriverState.Accelerate;
-            
+
         }
 
         private TrainSet getTrainInFront()

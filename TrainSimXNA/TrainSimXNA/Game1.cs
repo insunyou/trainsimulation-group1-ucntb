@@ -61,7 +61,7 @@ namespace TrainSimXNA
             railroad = rCtr.loadRailRoad("RailRoad.xml", Content);
 
             TrainSet train1;
-            train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(40));
+            train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(20));
 
             TrainCart cart1 = new TrainCart(Content);
             cart1.currentTrack = railroad.tracks[1];
@@ -76,11 +76,11 @@ namespace TrainSimXNA
             train1.locoDriver =  new LocoDriver("Per", train1, railroad);
            
             TrainSet train2;
-            train2 = new TrainSet("Train #2", new List<TrainCart>(), new Engine(10));
+            train2 = new TrainSet("Train #2", new List<TrainCart>(), new Engine(20));
 
             TrainCart cart2 = new TrainCart(Content);
-            cart2.currentTrack = railroad.tracks[4];
-            cart2.previousTrack = railroad.tracks[3];
+            cart2.currentTrack = railroad.tracks[7];
+            cart2.previousTrack = railroad.tracks[6];
             cart2.position = 10;
             cart2.maxSpeed = 60;
             cart2.setCart();
@@ -128,6 +128,7 @@ namespace TrainSimXNA
         {
             if (runSim)
             {
+                railroad.updateSensors();
                 foreach (TrainSet train in railroad.trains)
                     train.locoDriver.update(gameTime);
             }
