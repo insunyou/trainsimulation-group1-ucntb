@@ -39,14 +39,14 @@ namespace TrainSimulator.DB
                 {
                     t = new CornerTrack();
                     t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
-                    if (t.direction)
-                    {
+                    //if (t.direction)
+                    //{
                         t.gfx = content.Load<Texture2D>("rightTurnNB");
-                    }
-                    else
-                    {
-                        t.gfx = content.Load<Texture2D>("leftTurnNB");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    t.gfx = content.Load<Texture2D>("leftTurnNB");
+                    //}
                 }
 
                 if (type.Equals("SwitchRight"))
@@ -80,13 +80,11 @@ namespace TrainSimulator.DB
 
                 foreach (XmlNode nn in n.ChildNodes)
                 {
-                    foreach (XmlNode nnn in nn.ChildNodes)
-                    {
-                        if (nnn.Name == "Signal")
+                        if (nn.Name == "Signal")
                         {
-                            Signal s = new Signal(Convert.ToInt32(nnn.Attributes.GetNamedItem("ID").Value), content);
+                            Signal s = new Signal(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value), content);
                             s.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
-                            switch (nnn.Attributes.GetNamedItem("ID").Value)
+                            switch (nn.Attributes.GetNamedItem("ID").Value)
                             {
                                 case "Stop": s.state = Signal.State.Stop; break;
                                 case "Go": s.state = Signal.State.Go; break;
@@ -96,12 +94,12 @@ namespace TrainSimulator.DB
                             t.signals.Add(s);
                             System.Diagnostics.Debug.WriteLine("Signal added");
                         }
-                        else if (nnn.Name == "Sensor")
+                        else if (nn.Name == "Sensor")
                         {
-                            Sensor s = new Sensor(Convert.ToInt32(nnn.Attributes.GetNamedItem("ID").Value));
+                            Sensor s = new Sensor(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value));
                             t.sensors.Add(s);
                         }
-                    }
+                    
                 }
 
                 rr.tracks.Add(t);
