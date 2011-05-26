@@ -29,6 +29,8 @@ namespace TrainSimXNA
         public RailRoad railroad { get; set; }
         private bool runSim = false;
 
+        private SoundEffect whistle;
+
         public Game1(IntPtr drawSurface, int width, int height)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -83,6 +85,7 @@ namespace TrainSimXNA
             cart2.previousTrack = railroad.tracks[6];
             cart2.position = 10;
             cart2.maxSpeed = 60;
+            cart2.rotation = MathHelper.ToRadians(-90);
             cart2.setCart();
             train2.cartList.Add(cart2);
 
@@ -105,6 +108,7 @@ namespace TrainSimXNA
             //cart3.setCart();
             //train1.cartList.Add(cart3);
 
+            whistle = Content.Load<SoundEffect>("train");
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -174,6 +178,11 @@ namespace TrainSimXNA
         public void stopSim()
         {
             runSim = false;
+        }
+
+        public void playSound()
+        {
+            whistle.Play();
         }
 
         public void onUpdate(UpdatePanels updatePanels)
