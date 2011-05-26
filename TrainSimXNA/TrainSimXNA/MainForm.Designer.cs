@@ -81,6 +81,7 @@
             this.lbTrains.Name = "lbTrains";
             this.lbTrains.Size = new System.Drawing.Size(179, 95);
             this.lbTrains.TabIndex = 4;
+            this.lbTrains.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTrains_MouseDown);
             // 
             // label2
             // 

@@ -54,6 +54,20 @@ namespace TrainSimulator.Model
             return maxSpeed;
         }
 
-
+        public override string ToString()
+        {
+            string status = "";
+            if (locoDriver.driverState == LocoDriver.DriverState.Accelerate)
+                status = "   Accelerating";
+            else if (locoDriver.driverState == LocoDriver.DriverState.Decelerate)
+                status = "   Decelerating";
+            else if (locoDriver.driverState == LocoDriver.DriverState.Cruise)
+                status = "   Cruise";
+            else if (locoDriver.driverState == LocoDriver.DriverState.Stopped)
+                status = "   Stopped";
+            else if (locoDriver.driverState == LocoDriver.DriverState.Off)
+                status = "   Off";
+            return name + "       " + String.Format("{0:0.00}", engine.currentSpeed) + status;
+        }
     }
 }

@@ -13,7 +13,8 @@ namespace TrainSimulator.Model
             Accelerate,
             Decelerate,
             Cruise,
-            Stopped
+            Stopped,
+            Off
         }
 
         public string name { get; set; }
@@ -26,12 +27,12 @@ namespace TrainSimulator.Model
             this.name = name;
             this.trainSet = myTrain;
             this.railRoad = railroad;
-            driverState = DriverState.Stopped;
+            driverState = DriverState.Off;
         }
 
         public void StartDriving()
         {
-            driverState = DriverState.Accelerate;
+            driverState = DriverState.Stopped;
         }
 
         public void update(GameTime gameTime)
@@ -44,7 +45,7 @@ namespace TrainSimulator.Model
                 case DriverState.Stopped: Stopped(); break;
             }
 
-            trainSet.engine.updateSpeed(gameTime);
+            //trainSet.engine.updateSpeed(gameTime);
             trainSet.updatePosition(gameTime);
         }
 

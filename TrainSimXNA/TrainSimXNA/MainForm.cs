@@ -50,16 +50,7 @@ namespace TrainSimXNA
 
             foreach (TrainSet train in railroad.trains)
             {
-                string status = "";
-                if (train.locoDriver.driverState == LocoDriver.DriverState.Accelerate)
-                    status = "   Accelerating";
-                else if (train.locoDriver.driverState == LocoDriver.DriverState.Decelerate)
-                    status = "   Decelerating";
-                else if (train.locoDriver.driverState == LocoDriver.DriverState.Cruise)
-                    status = "   Cruise";
-                else if (train.locoDriver.driverState == LocoDriver.DriverState.Stopped)
-                    status = "   Stopped";
-                lbTrains.Items.Add(train.name + "       " + String.Format("{0:0.00}", train.engine.currentSpeed) + status);
+                lbTrains.Items.Add(train);
             }
         }
 
@@ -98,6 +89,16 @@ namespace TrainSimXNA
                     s.state = Signal.State.Stop;
                 else
                     s.state = Signal.State.Go;
+            }
+        }
+
+        private void lbTrains_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (lbTrains.SelectedIndex > 1)
+            {
+                TrainSet t = (TrainSet)lbTrains.SelectedItem;
+                if (t.locoDriver.driverState == LocoDriver.DriverState.Off)
+                    t.locoDriver.StartDriving();
             }
         }
     }
