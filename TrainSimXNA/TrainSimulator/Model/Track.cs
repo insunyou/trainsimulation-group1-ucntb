@@ -46,7 +46,12 @@ namespace TrainSimulator.Model
         {
             if (this is SwitchLeft || this is SwitchRight)
             {
-
+                if (nextTrack == prevT || switchTrack == prevT)
+                    return prevTrack;
+                else if (prevTrack == prevT && turn)
+                    return switchTrack;
+                else if (prevTrack == prevT && !turn)
+                    return nextTrack;
             }
             else
             {
