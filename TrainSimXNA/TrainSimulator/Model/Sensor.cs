@@ -23,10 +23,13 @@ namespace TrainSimulator.Model
         {
         }
 
-        public void setSignal()
+        public void setSignal(State state)
         {
-            if (mySignal.state == Signal.State.Go)
+            this.state = state;
+            if (state == State.On)
                 mySignal.state = Signal.State.Stop;
+            else
+                mySignal.state = Signal.State.Go;
         }
     }
 }

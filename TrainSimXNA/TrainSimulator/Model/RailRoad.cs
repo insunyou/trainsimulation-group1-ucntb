@@ -48,9 +48,9 @@ namespace TrainSimulator.Model
                 if (t.sensor != null)
                 {
                     if (getTrackStatus()[t] == null)
-                        t.sensor.mySignal.state = Signal.State.Go;
+                        t.sensor.setSignal(Sensor.State.Off);
                     else
-                        t.sensor.mySignal.state = Signal.State.Stop;
+                        t.sensor.setSignal(Sensor.State.On);
                 }
             }
         }
