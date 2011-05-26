@@ -12,11 +12,11 @@ namespace TrainSimulator.DB
 {
     public class RailRoadDB
     {
-        
+
 
         public RailRoad loadXML(string path, ContentManager content)
         {
-            
+
 
             XmlDocument doc = new XmlDocument();
 
@@ -41,7 +41,7 @@ namespace TrainSimulator.DB
                     t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
                     //if (t.direction)
                     //{
-                        t.gfx = content.Load<Texture2D>("rightTurnNB");
+                    t.gfx = content.Load<Texture2D>("rightTurnNB");
                     //}
                     //else
                     //{
@@ -54,10 +54,10 @@ namespace TrainSimulator.DB
                     t = new SwitchRight();
                     t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
                     t.turn = Convert.ToBoolean(n.Attributes.GetNamedItem("Switch").Value.ToString());
-                   
-                  
-                    
-                    
+
+
+
+
 
                     t.gfx = content.Load<Texture2D>("switchRight");
                 }
@@ -67,8 +67,8 @@ namespace TrainSimulator.DB
                     t = new SwitchLeft();
                     t.direction = Convert.ToBoolean(n.Attributes.GetNamedItem("Direction").Value.ToString());
                     t.turn = Convert.ToBoolean(n.Attributes.GetNamedItem("Switch").Value.ToString());
-                    
-                  
+
+
 
                     t.gfx = content.Load<Texture2D>("switchLeft");
                 }
@@ -78,29 +78,38 @@ namespace TrainSimulator.DB
                 t.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
                 t.id = Convert.ToInt32(n.Attributes.GetNamedItem("ID").Value);
 
-                foreach (XmlNode nn in n.ChildNodes)
-                {
-                        if (nn.Name == "Signal")
-                        {
-                            Signal s = new Signal(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value), content);
-                            s.position = new Vector2(Convert.ToInt32(n.Attributes.GetNamedItem("X").Value), Convert.ToInt32(n.Attributes.GetNamedItem("Y").Value));
-                            switch (nn.Attributes.GetNamedItem("ID").Value)
-                            {
-                                case "Stop": s.state = Signal.State.Stop; break;
-                                case "Go": s.state = Signal.State.Go; break;
-                                case "Off": s.state = Signal.State.Off; break;
-                            }
+                //foreach (XmlNode nn in n.ChildNodes)
+                //{
+                //if (nn.Name == "Signal")
+                //{
+                //    Signal s = new Signal(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value), content);
+                //    s.position = new Vector2(Convert.ToInt32(nn.Attributes.GetNamedItem("X").Value), Convert.ToInt32(nn.Attributes.GetNamedItem("Y").Value));
+                //    switch (nn.Attributes.GetNamedItem("InitialState").Value)
+                //    {
+                //        case "Stop": s.state = Signal.State.Stop; break;
+                //        case "Go": s.state = Signal.State.Go; break;
+                //        case "Off": s.state = Signal.State.Off; break;
+                //    }
 
-                            t.signal = s;
-                            System.Diagnostics.Debug.WriteLine("Signal added");
-                        }
-                        //else if (nn.Name == "Sensor")
-                        //{
-                        //    Sensor s = new Sensor(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value));
-                        //    t.sensors.Add(s);
-                        //}
-                    
-                }
+                //    t.signal = s;
+                //    System.Diagnostics.Debug.WriteLine("Signal added");
+                //}
+                //else 
+                //if (nn.Name == "Sensor")
+                //{
+                //    Sensor s = new Sensor();
+                //    s.id = Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value);
+                //    s.mySignal = rr.findSignal(Convert.ToInt32(nn.Attributes.GetNamedItem("SignalID").Value));
+
+                //    switch (nn.Attributes.GetNamedItem("InitialState").Value)
+                //    {
+                //        case "On": s.state = Sensor.State.On; break;
+                //        case "Off": s.state = Sensor.State.Off; break;
+                //    }
+                //    t.sensor = s;
+                //}
+
+                //}
 
                 rr.tracks.Add(t);
             }
@@ -117,6 +126,49 @@ namespace TrainSimulator.DB
                         if (t is SwitchLeft || t is SwitchRight)
                         {
                             t.switchTrack = rr.findTrack(Convert.ToInt32(xml.Attributes.GetNamedItem("SwitchTrackID").Value));
+                        }
+                        foreach (XmlNode nn in xml.ChildNodes)
+                        {
+                            if (nn.Name == "Signal")
+                            {
+                                Signal s = new Signal(Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value), content);
+                                s.position = new Vector2(Convert.ToInt32(nn.Attributes.GetNamedItem("X").Value), Convert.ToInt32(nn.Attributes.GetNamedItem("Y").Value));
+                                switch (nn.Attributes.GetNamedItem("InitialState").Value)
+                                {
+                                    case "Stop": s.state = Signal.State.Stop; break;
+                                    case "Go": s.state = Signal.State.Go; break;
+                                    case "Off": s.state = Signal.State.Off; break;
+                                }
+
+                                t.signal = s;
+                                System.Diagnostics.Debug.WriteLine("Signal added");
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (XmlNode xml in nodeList)
+            {
+                foreach (Track t in rr.tracks)
+                {
+                    if (t.id == Convert.ToInt32(xml.Attributes.GetNamedItem("ID").Value))
+                    {
+                        foreach (XmlNode nn in xml.ChildNodes)
+                        {
+                            if (nn.Name == "Sensor")
+                            {
+                                Sensor s = new Sensor();
+                                s.id = Convert.ToInt32(nn.Attributes.GetNamedItem("ID").Value);
+                                s.mySignal = rr.findSignal(Convert.ToInt32(nn.Attributes.GetNamedItem("SignalID").Value));
+
+                                switch (nn.Attributes.GetNamedItem("InitialState").Value)
+                                {
+                                    case "On": s.state = Sensor.State.On; break;
+                                    case "Off": s.state = Sensor.State.Off; break;
+                                }
+                                t.sensor = s;
+                            }
                         }
                     }
                 }

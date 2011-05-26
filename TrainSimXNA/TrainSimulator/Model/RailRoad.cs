@@ -41,6 +41,20 @@ namespace TrainSimulator.Model
             return result;
         }
 
+        public void updateSensors()
+        {
+            foreach (Track t in tracks)
+            {
+                if (t.sensor != null)
+                {
+                    if (getTrackStatus()[t] == null)
+                        t.sensor.mySignal.state = Signal.State.Go;
+                    else
+                        t.sensor.mySignal.state = Signal.State.Stop;
+                }
+            }
+        }
+
         public TrainSet nextTrackStatus(Track nextTrack)
         {
             return getTrackStatus()[nextTrack];
@@ -58,6 +72,11 @@ namespace TrainSimulator.Model
         public Signal getNextSignal(Track nextTrack)
         {
             return findTrack(nextTrack.id).signal;
+        }
+
+        public Sensor getNextSensor(Track nextTrack)
+        {
+            return findTrack(nextTrack.id).sensor;
         }
 
         public Signal findSignal(int id)
