@@ -106,8 +106,9 @@ namespace TrainEditor
             foreach (Track t in rr.tracks)
             {
                 spriteBatch.Draw(t.gfx, t.position, null, new Color(255, 255, 255, 255), t.rotation, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
-                foreach (Signal s in t.signals)
-                    spriteBatch.Draw(s.getTexture(), s.position, null, new Color(255, 255, 255, 255), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
+                Signal s = t.signal;
+                if(s != null)
+                spriteBatch.Draw(s.getTexture(), s.position, null, new Color(255, 255, 255, 255), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
             }
 
             // TODO: Add your drawing code here

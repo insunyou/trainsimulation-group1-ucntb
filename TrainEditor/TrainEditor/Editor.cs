@@ -11,6 +11,7 @@ using TrainSimulator.Model;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml.Linq;
+using System.Threading;
 using System.Xml;
 
 namespace TrainEditor
@@ -34,6 +35,7 @@ namespace TrainEditor
             file = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("TrainEditor.butGfx.rightTurnNB.png");
             butImg = (Image)Image.FromStream(file);
             pbCorner.Image = butImg;
+            MessageBox.Show("Click in the 'track area' to set start point");
         }
 
         public IntPtr getDrawSurface()
@@ -54,13 +56,37 @@ namespace TrainEditor
             isCorner = false;
             game.setCont();
             direction = Direction.Right;
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                RailRoad r = game.rr;
+                foreach (Track t in r.tracks)
+                {
+                    int xxx = t.gfx.Width + Convert.ToInt32(t.position.X);
+                    int xxy = Convert.ToInt32(t.position.X);
+                    int yyy = t.gfx.Height + Convert.ToInt32(t.position.Y);
+                    int yyx = Convert.ToInt32(t.position.Y);
+                    if (xxy < e.X && e.X < xxx)
+                    {
+                        if (yyx < e.Y && e.Y < yyy)
+                        {
+                            Signal s = new Signal(1, game.Content);
+                            if (MathHelper.ToDegrees(t.rotation) == 90)
+                            {
+                                s.position = new Vector2(t.position.X - 20, t.position.Y + (t.position.Y / 2) );
+                            }
+                            else
+                            {
+                                s.position = new Vector2(t.position.X + (t.gfx.Width / 2) - 20, t.position.Y + t.gfx.Height + 2);
+                            }
+                            t.signal = s;
+                        }
+                    }
+                }
+            }
+
             //game.setStartPoint(place);
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -91,11 +117,11 @@ namespace TrainEditor
                                 t.position = new Vector2(oldT.position.X, oldT.position.Y - 18);
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 50);
+                                t.position = new Vector2(oldT.position.X + 59, oldT.position.Y - 59);
                         }
                         else
                         {
-                            t.position = new Vector2(oldT.position.X + 65, oldT.position.Y);
+                            t.position = new Vector2(oldT.position.X + 50, oldT.position.Y);
                         }
                     }
                     if (direction == Direction.Left)
@@ -105,14 +131,14 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
-                                t.position = new Vector2(oldT.position.X - 65, oldT.position.Y);
+                                t.position = new Vector2(oldT.position.X - 50, oldT.position.Y);
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 90)
-                                t.position = new Vector2(oldT.position.X - 115, oldT.position.Y + 32);
+                                t.position = new Vector2(oldT.position.X - 109, oldT.position.Y + 41);
                         }
                         else
                         {
-                            t.position = new Vector2(oldT.position.X - 65, oldT.position.Y);
+                            t.position = new Vector2(oldT.position.X - 50, oldT.position.Y);
                         }
                     }
 
@@ -123,14 +149,14 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y + 50);
+                                t.position = new Vector2(oldT.position.X + 59, oldT.position.Y + 59);
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                                 t.position = new Vector2(oldT.position.X + 18, oldT.position.Y);
                         }
                         else
                         {
-                            t.position = new Vector2(oldT.position.X, oldT.position.Y + 65);
+                            t.position = new Vector2(oldT.position.X, oldT.position.Y + 50);
                         }
                     }
                     if (direction == Direction.Up)
@@ -141,14 +167,14 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 90)
                             {
-                                t.position = new Vector2(oldT.position.X, oldT.position.Y - 65);
+                                t.position = new Vector2(oldT.position.X, oldT.position.Y - 50);
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 180)
-                                t.position = new Vector2(oldT.position.X- 32, oldT.position.Y - 115);
+                                t.position = new Vector2(oldT.position.X- 41, oldT.position.Y - 109);
                         }
                         else
                         {
-                            t.position = new Vector2(oldT.position.X, oldT.position.Y - 65);
+                            t.position = new Vector2(oldT.position.X, oldT.position.Y - 50);
                         }
                     }
                     t.prevTrack = game.rr.tracks[game.rr.tracks.Count() - 1];
@@ -156,8 +182,9 @@ namespace TrainEditor
                     game.rr.tracks[game.rr.tracks.Count() - 1].nextTrack = t;
                     game.addTrack(t);
                     isCorner = false;
-                }
+                }                
             }
+            
         }
         bool isCorner = false;
         private void pbCorner_MouseClick(object sender, MouseEventArgs e)
@@ -183,7 +210,7 @@ namespace TrainEditor
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                             {
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 18);
+                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 50);
                                 direction = Direction.Down;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -193,7 +220,8 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 180)
                             {
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 18);
+                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 50);
+                                t.direction = true;
                                 direction = Direction.Up;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -201,6 +229,7 @@ namespace TrainEditor
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                             {
                                 t.position = new Vector2(oldT.position.X + 100, oldT.position.Y - 18);
+                                t.direction = true;
                                 direction = Direction.Up;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -211,14 +240,15 @@ namespace TrainEditor
                     {
                         if (cornerFlip == 0)
                         {
-                            t.position = new Vector2(oldT.position.X + 65, oldT.position.Y);
+                            t.position = new Vector2(oldT.position.X + 50, oldT.position.Y);
                             direction = Direction.Down;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                             pbStraight.Refresh();
                         }
                         else if (cornerFlip == 90)
                         {
-                            t.position = new Vector2(oldT.position.X + 115, oldT.position.Y - 32);
+                            t.position = new Vector2(oldT.position.X + 100, oldT.position.Y - 32);
+                            t.direction = true;
                             direction = Direction.Up;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                             pbStraight.Refresh();
@@ -251,6 +281,7 @@ namespace TrainEditor
                             if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
                                 t.position = new Vector2(oldT.position.X + 82, oldT.position.Y + 100);
+                                t.direction = true;
                                 direction = Direction.Right;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -258,6 +289,7 @@ namespace TrainEditor
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                             {
                                 t.position = new Vector2(oldT.position.X + 50, oldT.position.Y + 50);
+                                t.direction = true;
                                 direction = Direction.Right;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -268,14 +300,15 @@ namespace TrainEditor
                     {
                         if (cornerFlip == 90)
                         {
-                            t.position = new Vector2(oldT.position.X, oldT.position.Y + 65);
+                            t.position = new Vector2(oldT.position.X, oldT.position.Y + 50);
                             direction = Direction.Left;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                             pbStraight.Refresh();
                         }
                         else if (cornerFlip == 180)
                         {
-                            t.position = new Vector2(oldT.position.X + 32, oldT.position.Y + 115);
+                            t.position = new Vector2(oldT.position.X + 32, oldT.position.Y + 100);
+                            t.direction = true;
                             direction = Direction.Right;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                             pbStraight.Refresh();
@@ -308,6 +341,7 @@ namespace TrainEditor
                             if (MathHelper.ToDegrees(oldT.rotation) == 90)
                             {
                                 t.position = new Vector2(oldT.position.X - 100, oldT.position.Y + 82);
+                                t.direction = true;
                                 direction = Direction.Down;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -315,6 +349,7 @@ namespace TrainEditor
                             else if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
                                 t.position = new Vector2(oldT.position.X - 50 , oldT.position.Y + 50);
+                                t.direction = true;
                                 direction = Direction.Down;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -333,6 +368,7 @@ namespace TrainEditor
                         else if (cornerFlip == 270)
                         {
                             t.position = new Vector2(oldT.position.X - 50, oldT.position.Y + 50);
+                            t.direction = true;
                             direction = Direction.Down;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                             pbStraight.Refresh();
@@ -349,12 +385,18 @@ namespace TrainEditor
                             if (MathHelper.ToDegrees(oldT.rotation) == 90)
                             {
                                 t.position = new Vector2(oldT.position.X - 50, oldT.position.Y - 50);
+                                t.direction = true;
                                 direction = Direction.Left;
+                                pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                                pbStraight.Refresh();
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 180)
                             {
-                                t.position = new Vector2(oldT.position.X-82, oldT.position.Y - 100);
+                                t.position = new Vector2(oldT.position.X-100, oldT.position.Y - 118);
+                                t.direction = true;
                                 direction = Direction.Left;
+                                pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                                pbStraight.Refresh();
                             }
                         }
                         else if (cornerFlip == 270)
@@ -363,11 +405,15 @@ namespace TrainEditor
                             {
                                 t.position = new Vector2(oldT.position.X - 18, oldT.position.Y);
                                 direction = Direction.Right;
+                                pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                                pbStraight.Refresh();
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 180)
                             {
-                                t.position = new Vector2(oldT.position.X - 50, oldT.position.Y- 50);
+                                t.position = new Vector2(oldT.position.X - 59, oldT.position.Y- 59);                                
                                 direction = Direction.Right;
+                                pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                                pbStraight.Refresh();
                             }
                         }
                     }
@@ -376,18 +422,23 @@ namespace TrainEditor
                         if (cornerFlip == 0)
                         {
                             t.position = new Vector2(oldT.position.X - 50 , oldT.position.Y - 50);
+                            t.direction = true;
                             direction = Direction.Left;
+                            pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                            pbStraight.Refresh();
                         }
                         else if (cornerFlip == 270)
                         {
                             t.position = new Vector2(oldT.position.X - 18, oldT.position.Y);
+                            
                             direction = Direction.Right;
+                            pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                            pbStraight.Refresh();
                         }
                     }
                 }                
                 t.prevTrack = game.rr.tracks[game.rr.tracks.Count() - 1];
                 t.id = oldT.id + 1;
-                t.direction = false;
                 game.rr.tracks[game.rr.tracks.Count() - 1].nextTrack = t;
                 game.addTrack(t);
                 isCorner = true;
@@ -424,5 +475,10 @@ namespace TrainEditor
             xDoc.Save(fileName.ToString() + ".xml");
         }
 
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("TrainEditor.exe");
+            this.Close();
+        }
     }
 }

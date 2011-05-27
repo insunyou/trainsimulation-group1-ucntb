@@ -28,14 +28,14 @@ namespace TrainSimulator.Model
                 if (cart.currentPos.X <= cart.previousTrack.position.X)
                     cartPos = 100 - cartPos;
 
-                result = new Vector2(Convert.ToInt32(position.X + (65 * cartPos / 100)), position.Y + 9);
+                result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 9);
             }
             else if (MathHelper.ToDegrees(rotation) == 90 || MathHelper.ToDegrees(rotation) == 270)
             {
                 if (cart.currentPos.Y <= cart.previousTrack.position.Y)
                     cartPos = 100 - cartPos;
 
-                result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (65 * cartPos / 100)));
+                result = new Vector2(position.X - 9, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
             }
             
             return result;
