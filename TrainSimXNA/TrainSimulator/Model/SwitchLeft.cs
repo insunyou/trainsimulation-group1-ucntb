@@ -16,8 +16,8 @@ namespace TrainSimulator.Model
         public override Vector2 calculatCartPosition(TrainCart cart)
         {
             Vector2 result = new Vector2();
-            int offset = 47;
-            int radius = 38;
+            int offset = 59;
+            int radius = 50;
             
             double cartPos = cart.position;
 
@@ -38,7 +38,7 @@ namespace TrainSimulator.Model
             if (cart.previousTrack == nextTrack || (cart.previousTrack == prevTrack && !turn))
             {
                 if (MathHelper.ToDegrees(rotation) == 0)
-                    result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 41);
+                    result = new Vector2(Convert.ToInt32(position.X + (50 * cartPos / 100)), position.Y + 50);
                 else if(MathHelper.ToDegrees(rotation) == 90)
                     result = new Vector2(position.X - 41, Convert.ToInt32(position.Y + (50 * cartPos / 100)));
                 else if(MathHelper.ToDegrees(rotation) == 180)
@@ -68,7 +68,7 @@ namespace TrainSimulator.Model
                 }
                 else
                 {
-                    angle = 180  -angle;
+                    angle = -angle;
                     moveAngle = -moveAngle;
                     result = new Vector2(position.X + Convert.ToInt32(radius * Math.Cos(Math.PI / 180 * moveAngle)), position.Y + Convert.ToInt32(radius * Math.Sin(Math.PI / 180 * moveAngle)));
                 }

@@ -63,13 +63,13 @@
             this.lbTracks.FormattingEnabled = true;
             this.lbTracks.Location = new System.Drawing.Point(685, 28);
             this.lbTracks.Name = "lbTracks";
-            this.lbTracks.Size = new System.Drawing.Size(165, 303);
+            this.lbTracks.Size = new System.Drawing.Size(165, 381);
             this.lbTracks.TabIndex = 2;
             this.lbTracks.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTracks_MouseDown);
             // 
             // btnStartSim
             // 
-            this.btnStartSim.Location = new System.Drawing.Point(685, 351);
+            this.btnStartSim.Location = new System.Drawing.Point(685, 423);
             this.btnStartSim.Name = "btnStartSim";
             this.btnStartSim.Size = new System.Drawing.Size(165, 23);
             this.btnStartSim.TabIndex = 3;

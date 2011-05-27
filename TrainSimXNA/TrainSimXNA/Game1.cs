@@ -18,6 +18,7 @@ namespace TrainSimXNA
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        private InitPanels initPanels;
         private UpdatePanels updatePanels;
         private int milisecondsPanels;
 
@@ -60,7 +61,7 @@ namespace TrainSimXNA
         protected override void LoadContent()
         {
             RailRoadCtr rCtr = new RailRoadCtr();
-            railroad = rCtr.loadRailRoad("Tramps.xml", Content);
+            railroad = rCtr.loadRailRoad("Railroad2.xml", Content);
 
             TrainSet train1;
             train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(20));
@@ -109,7 +110,7 @@ namespace TrainSimXNA
             //train1.cartList.Add(cart3);
 
             whistle = Content.Load<SoundEffect>("train");
-
+            initPanels(railroad);
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -188,6 +189,11 @@ namespace TrainSimXNA
         public void onUpdate(UpdatePanels updatePanels)
         {
             this.updatePanels += updatePanels;
+        }
+
+        public void onInit(InitPanels initPanels)
+        {
+            this.initPanels += initPanels;
         }
 
         private void graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)

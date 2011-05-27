@@ -6,6 +6,7 @@ using TrainSimulator.Model;
 namespace TrainSimXNA
 {
     public delegate void UpdatePanels(RailRoad railroad);
+    public delegate void InitPanels(RailRoad railroad);
 
     public partial class MainForm : Form
     {
@@ -17,11 +18,36 @@ namespace TrainSimXNA
             InitializeComponent();
         }
 
-        public void updatePanels(RailRoad railroad)
+        public void initPanels(RailRoad railroad)
         {
             lbTracks.Items.Clear();
             lbTracks.Items.Add("ID:               Occupied");
             lbTracks.Items.Add("");
+
+            Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
+            foreach (Track t in tracks.Keys)
+            {
+                string status = "Track #" + t.id;
+                if (tracks[t] != null)
+                    status += "     " + tracks[t].name + "    ";
+                else
+                    status += "                      ";
+
+                if (t is SwitchLeft || t is SwitchRight)
+                {
+                    if (t.turn)
+                        status += "Switched";
+                    else
+                        status += "Through";
+
+                }
+                lbTracks.Items.Add(status);
+            }
+        }
+
+        public void updatePanels(RailRoad railroad)
+        {
+            
             
             lbTrains.Items.Clear();
             lbTrains.Items.Add("ID:               Speed");
@@ -36,8 +62,10 @@ namespace TrainSimXNA
             lbSensors.Items.Add("");
 
             Dictionary<Track, TrainSet> tracks = railroad.getTrackStatus();
+            int count = 1;
             foreach(Track t in tracks.Keys)
             {
+                count++;
                 string status = "Track #" + t.id;
                 if (tracks[t] != null)
                     status += "     " + tracks[t].name + "    ";
@@ -52,7 +80,7 @@ namespace TrainSimXNA
                         status += "Through";
 
                 }
-                lbTracks.Items.Add(status);
+                lbTracks.Items[count] = status;
 
                 if (t.signal != null)
                 {
@@ -123,6 +151,10 @@ namespace TrainSimXNA
                 {
                     t.locoDriver.StartDriving();
                     game.playSound();
+                }
+                else if (t.locoDriver.driverState == LocoDriver.DriverState.Stopped)
+                {
+                    t.locoDriver.driverState = LocoDriver.DriverState.Off;
                 }
             }
         }

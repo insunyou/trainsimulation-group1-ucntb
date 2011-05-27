@@ -210,7 +210,7 @@ namespace TrainEditor
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                             {
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 50);
+                                t.position = new Vector2(oldT.position.X + 59, oldT.position.Y - 59);
                                 direction = Direction.Down;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                                 pbStraight.Refresh();
@@ -220,7 +220,7 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 180)
                             {
-                                t.position = new Vector2(oldT.position.X + 50, oldT.position.Y - 50);
+                                t.position = new Vector2(oldT.position.X + 59, oldT.position.Y - 59);
                                 t.direction = true;
                                 direction = Direction.Up;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
@@ -228,7 +228,7 @@ namespace TrainEditor
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 270)
                             {
-                                t.position = new Vector2(oldT.position.X + 100, oldT.position.Y - 18);
+                                t.position = new Vector2(oldT.position.X + 118, oldT.position.Y - 100);
                                 t.direction = true;
                                 direction = Direction.Up;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
@@ -247,7 +247,7 @@ namespace TrainEditor
                         }
                         else if (cornerFlip == 90)
                         {
-                            t.position = new Vector2(oldT.position.X + 100, oldT.position.Y - 32);
+                            t.position = new Vector2(oldT.position.X + 109, oldT.position.Y - 41);
                             t.direction = true;
                             direction = Direction.Up;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
@@ -280,7 +280,7 @@ namespace TrainEditor
                         {
                             if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
-                                t.position = new Vector2(oldT.position.X + 82, oldT.position.Y + 100);
+                                t.position = new Vector2(oldT.position.X + 100, oldT.position.Y + 118);
                                 t.direction = true;
                                 direction = Direction.Right;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
@@ -348,7 +348,7 @@ namespace TrainEditor
                             }
                             else if (MathHelper.ToDegrees(oldT.rotation) == 0)
                             {
-                                t.position = new Vector2(oldT.position.X - 50 , oldT.position.Y + 50);
+                                t.position = new Vector2(oldT.position.X - 59 , oldT.position.Y + 59);
                                 t.direction = true;
                                 direction = Direction.Down;
                                 pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
@@ -367,7 +367,7 @@ namespace TrainEditor
                         }
                         else if (cornerFlip == 270)
                         {
-                            t.position = new Vector2(oldT.position.X - 50, oldT.position.Y + 50);
+                            t.position = new Vector2(oldT.position.X - 59, oldT.position.Y + 59);
                             t.direction = true;
                             direction = Direction.Down;
                             pbStraight.Image.RotateFlip(RotateFlipType.Rotate90FlipY);

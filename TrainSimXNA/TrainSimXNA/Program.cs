@@ -14,6 +14,7 @@ namespace TrainSimXNA
 	        form.Show();
 	        Game1 game = new Game1(form.getDrawSurface(), form.pctSurface.Width, form.pctSurface.Height);
             game.onUpdate(new UpdatePanels(form.updatePanels));
+            game.onInit(new InitPanels(form.initPanels));
             form.game = game;
 	        game.Run();
         }
