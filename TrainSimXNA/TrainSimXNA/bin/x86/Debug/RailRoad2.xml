@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RailRoad>
+  <Track ID="1" PreviousTrack="26" NextTrack="2" Type="StraightTrack" Direction="true" X="300" Y="8" Rotation="0" />
+  <Track ID="2" PreviousTrack="1" NextTrack="3" Type="CornerTrack" Direction="false" X="350" Y="8" Rotation="0" >
+    <Signal ID="1" InitialState="Go" X="415" Y="20"></Signal>
+  </Track>
+  <Track ID="3" PreviousTrack="4" NextTrack="29" SwitchTrackID="2" Type="SwitchRight" Direction="true" X="450" Y="126" Rotation="180" Switch="False" />
+  <Track ID="4" PreviousTrack="3" NextTrack="5" Type="StraightTrack" Direction="true" X="450" Y="108" Rotation="0" />
+  <Track ID="5" PreviousTrack="4" NextTrack="6" Type="StraightTrack" Direction="true" X="500" Y="108" Rotation="0" />
+  <Track ID="6" PreviousTrack="5" NextTrack="7" Type="CornerTrack" Direction="false" X="550" Y="108" Rotation="0" />
+  <Track ID="7" PreviousTrack="6" NextTrack="8" Type="StraightTrack" Direction="true" X="609" Y="167" Rotation="90" />
+  <Track ID="8" PreviousTrack="7" NextTrack="9" Type="CornerTrack" Direction="false" X="609" Y="217" Rotation="90" />
+  <Track ID="9" PreviousTrack="8" NextTrack="10" Type="StraightTrack" Direction="false" X="500" Y="258" Rotation="0" />
+  <Track ID="10" PreviousTrack="9" NextTrack="11" Type="CornerTrack" Direction="false" X="500" Y="276" Rotation="180" />
+  <Track ID="11" PreviousTrack="10" NextTrack="12" Type="CornerTrack" Direction="true" X="400" Y="158" Rotation="0" />
+  <Track ID="12" PreviousTrack="11" NextTrack="13" Type="CornerTrack" Direction="true" X="341" Y="217" Rotation="270" />
+  <Track ID="13" PreviousTrack="12" NextTrack="14" Type="CornerTrack" Direction="false" X="359" Y="217" Rotation="90" />
+  <Track ID="14" PreviousTrack="13" NextTrack="15" Type="StraightTrack" Direction="false" X="250" Y="258" Rotation="0" />
+  <Track ID="15" PreviousTrack="14" NextTrack="16" Type="StraightTrack" Direction="false" X="200" Y="258" Rotation="0" />
+  <Track ID="16" PreviousTrack="15" NextTrack="17" Type="StraightTrack" Direction="false" X="150" Y="258" Rotation="0" />
+  <Track ID="17" PreviousTrack="16" NextTrack="18" Type="StraightTrack" Direction="false" X="100" Y="258" Rotation="0" />
+  <Track ID="18" PreviousTrack="17" NextTrack="19" Type="CornerTrack" Direction="false" X="100" Y="276" Rotation="180" />
+  <Track ID="19" PreviousTrack="18" NextTrack="20" Type="StraightTrack" Direction="false" X="59" Y="167" Rotation="90" />
+  <Track ID="20" PreviousTrack="19" NextTrack="21" Type="StraightTrack" Direction="false" X="59" Y="117" Rotation="90" />
+  <Track ID="21" PreviousTrack="20" NextTrack="22" Type="StraightTrack" Direction="false" X="59" Y="67" Rotation="90" />
+  <Track ID="22" PreviousTrack="21" NextTrack="23" Type="CornerTrack" Direction="false" X="41" Y="67" Rotation="270" />
+  <Track ID="23" PreviousTrack="22" NextTrack="24" Type="CornerTrack" Direction="false" X="100" Y="8" Rotation="0" />
+  <Track ID="24" PreviousTrack="23" NextTrack="25" Type="CornerTrack" Direction="true" X="200" Y="126" Rotation="180" />
+  <Track ID="25" PreviousTrack="24" NextTrack="27" SwitchTrackID="26" Type="SwitchLeft" Direction="true" X="200" Y="67" Rotation="0" Switch="False" />
+  <Track ID="26" PreviousTrack="25" NextTrack="1" Type="CornerTrack" Direction="false" X="241" Y="67" Rotation="270" />
+  <Track ID="27" PreviousTrack="25" NextTrack="28" Type="StraightTrack" Direction="false" X="250" Y="108" Rotation="0" >
+  </Track>
+  <Track ID="28" PreviousTrack="27" NextTrack="29" Type="StraightTrack" Direction="false" X="300" Y="108" Rotation="0" >
+    <Sensor ID="2" SignalID="1" InitialState="Off"></Sensor>
+  </Track>
+  <Track ID="29" PreviousTrack="28" NextTrack="3" Type="StraightTrack" Direction="false" X="350" Y="108" Rotation="0" >
+  </Track>
+  </RailRoad>
