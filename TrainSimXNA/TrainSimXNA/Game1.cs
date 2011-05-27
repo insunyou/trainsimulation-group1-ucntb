@@ -60,7 +60,7 @@ namespace TrainSimXNA
         protected override void LoadContent()
         {
             RailRoadCtr rCtr = new RailRoadCtr();
-            railroad = rCtr.loadRailRoad("RailRoad.xml", Content);
+            railroad = rCtr.loadRailRoad("testCorner.xml", Content);
 
             TrainSet train1;
             train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(20));
