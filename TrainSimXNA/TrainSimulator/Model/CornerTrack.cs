@@ -21,8 +21,8 @@ namespace TrainSimulator.Model
 
         public override Vector2 calculatCartPosition(TrainCart cart)
         {
-            int offset = 57;
-            int radius = 48;
+            int offset = 59;
+            int radius = 50;
 
             double cartPos = cart.position;
 
