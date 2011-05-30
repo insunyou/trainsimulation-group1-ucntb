@@ -161,14 +161,14 @@ namespace TrainSimulator.Model
         private TrainSet getTrainInFront()
         {
             Track t = trainSet.cartList[0].currentTrack;
-            Track nextTrack = t.getNextTrack(t.prevTrack);
+            Track nextTrack = t.getNextTrack(trainSet.cartList[0].previousTrack);
             return railRoad.nextTrackStatus(nextTrack);
         }
 
         private Signal getNextSignal()
         {
             Track t = trainSet.cartList[0].currentTrack;
-            Track nextTrack = t.getNextTrack(t.prevTrack);
+            Track nextTrack = t.getNextTrack(trainSet.cartList[0].previousTrack);
             Signal s = railRoad.getNextSignal(nextTrack);
             return s;
         }

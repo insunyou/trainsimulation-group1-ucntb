@@ -64,11 +64,11 @@ namespace TrainSimXNA
             railroad = rCtr.loadRailRoad("Railroad2.xml", Content);
 
             TrainSet train1;
-            train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(20));
+            train1 = new TrainSet("Train #1", new List<TrainCart>(), new Engine(30));
 
             TrainCart cart1 = new TrainCart(Content);
-            cart1.currentTrack = railroad.tracks[1];
-            cart1.previousTrack = railroad.tracks[0];
+            cart1.currentTrack = railroad.tracks[0];
+            cart1.previousTrack = railroad.tracks[25];
             cart1.position = 50;
             cart1.maxSpeed = 60;
             cart1.setCart();
@@ -82,11 +82,11 @@ namespace TrainSimXNA
             train2 = new TrainSet("Train #2", new List<TrainCart>(), new Engine(20));
 
             TrainCart cart2 = new TrainCart(Content);
-            cart2.currentTrack = railroad.tracks[7];
-            cart2.previousTrack = railroad.tracks[6];
-            cart2.position = 10;
+            cart2.currentTrack = railroad.tracks[27];
+            cart2.previousTrack = railroad.tracks[26];
+            cart2.position = 50;
             cart2.maxSpeed = 60;
-            cart2.rotation = MathHelper.ToRadians(-90);
+            cart2.rotation = MathHelper.ToRadians(0);
             cart2.setCart();
             train2.cartList.Add(cart2);
 
