@@ -34,5 +34,6 @@
     <Sensor ID="2" SignalID="1" InitialState="Off"></Sensor>
   </Track>
   <Track ID="29" PreviousTrack="28" NextTrack="3" Type="StraightTrack" Direction="false" X="350" Y="108" Rotation="0" >
+    <Signal ID="2" InitialState="Go" X="325" Y="130"></Signal>
   </Track>
   </RailRoad>

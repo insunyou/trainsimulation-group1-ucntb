@@ -63,7 +63,7 @@
             this.lbTracks.FormattingEnabled = true;
             this.lbTracks.Location = new System.Drawing.Point(685, 28);
             this.lbTracks.Name = "lbTracks";
-            this.lbTracks.Size = new System.Drawing.Size(165, 381);
+            this.lbTracks.Size = new System.Drawing.Size(213, 381);
             this.lbTracks.TabIndex = 2;
             this.lbTracks.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTracks_MouseDown);
             // 
@@ -71,7 +71,7 @@
             // 
             this.btnStartSim.Location = new System.Drawing.Point(685, 423);
             this.btnStartSim.Name = "btnStartSim";
-            this.btnStartSim.Size = new System.Drawing.Size(165, 23);
+            this.btnStartSim.Size = new System.Drawing.Size(213, 23);
             this.btnStartSim.TabIndex = 3;
             this.btnStartSim.Text = "Start Simulator";
             this.btnStartSim.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 480);
+            this.ClientSize = new System.Drawing.Size(925, 480);
             this.Controls.Add(this.lbSensors);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
